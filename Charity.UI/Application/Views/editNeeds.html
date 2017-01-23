@@ -1,0 +1,105 @@
+﻿<div class="main-container" ng-app="client_side" ng-controller="needControllerEdit">
+    <br>
+    <div class="container">
+
+        <form name="NeedForm" class="form-horizontal margin3-top" ng-if="prop.isReady" novalidate>
+            <div class="form-group margin3-bottom">
+                <h3 class="col-sm-4 text-center">Редагування потреби</h3>
+            </div>
+            <div class="form-group">
+                <label for="Name" class="col-sm-2 control-label">Назва потреби <b class="errortext">*</b></label>
+                <div class="col-sm-10">
+                    <input name="Name" type="text" class="form-control" ng-model="Need.Name" placeholder="назва потреби" value="" required ng-minlength="5"ng-maxlength="80">
+                    <p ng-show="NeedForm.Name.$error.required && prop.NoValid"class="errortext">Будь ласка, заповніть це поле</p>
+                    <p ng-show="NeedForm.Name.$error.minlength && prop.NoValid" class="errortext">Занадто коротка назва потреби</p>
+                    <p ng-show="NeedForm.Name.$error.maxlength && prop.NoValid" class="errortext">Скоротіть,будь ласка, назву</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name" class="col-sm-2 control-label">Статус</label>
+                <div class="col-sm-4">
+                    <select name="type" ng-model="selectedOption" class=" form-control" data-live-search="true"
+                            ng-options="option.name for option in options" required></select>
+                </div>
+                <div ng-show="NeedForm.type.$error.required && prop.NoValid" class="errortext">Будь ласка, виберіть одне значення</div>
+            </div>
+            <div class="form-group">
+                <label for="image" class="col-sm-2 control-label">Посилання на зображення</label>
+                <div class="col-sm-10">
+                    <input name="imageLink"  class="form-control" ng-model="Need.ImageLink" placeholder="ваше посилання" value="">
+                    <p ng-show="OrganizationForm.imageLink.$error.url && prop.NoValid" class="errortext">Перевірте правильність посилання</p>
+                </div>
+                <div class="row" style="width:80%;margin:0 210px">
+                    <label>
+                        <div class='input-group'>
+                            <input ng-model="form.image" type="file" class="form-control" accept="image/*" onchange="FileGetter(this)">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-arrow-down"></span>
+                            </span>
+                        </div>
+                    </label>
+                    <script type="text/javascript">
+                            var Files = [];
+                            function FileGetter(element) {
+                                Files[0] = element.files[0];
+                            }
+                    </script>
+                    <div class="errortext" style="text-align:center;">Не більше 1 мегабайту</div>
+                    <input type="submit" accept=".bmp,.jpg,.jpeg,.gif,.png" id="submit" value="Завантажити" class="btn btn-default btn-block" ng-click="uploadNeedImage()" />
+                    <img ng-src="{{image_source_needPreview}}" class="row margin5-bottom" style="padding:0%;width:300px;display:block;margin:auto;width:40%;margin:10px auto auto auto;">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Desc" class="col-sm-2 control-label">Опис потреби <b class="errortext">*</b></label>
+                <div class="col-sm-10">
+                    <textarea name="description" class="form-control" rows="5" ng-model="Need.Description" placeholder="Опишіть вашу потребу більш детально" required ng-minlength="10" ng-maxlength="400"></textarea>
+                    <p ng-show="NeedForm.description.$error.required && prop.NoValid" class="errortext">Будь ласка, заповніть це поле</p>
+                    <p ng-show="NeedForm.description.$error.minlength && prop.NoValid" class="errortext">Занадто короткий опис вашої потреби</p>
+                    <p ng-show="NeedForm.description.$error.maxlength && prop.NoValid" class="errortext">Скоротіть,будь ласка, опис вашої потреби</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6 col-md-offset-2" ng-click="prop.NoValid = true">
+                    <input id="submit" name="submit" ng-click="NeedForm.$valid && openModal()" type="submit" value="Підтвердити оновлення" class="btn btn-success">
+                </div>
+                <div class="col-md-offset-10">
+                    <input id="" name="submit" ng-click="backToNeedsList()" type="submit" value="Відмінити оновлення" class="btn btn-warning">
+                </div>
+            </div>
+        </form>
+        <div class="row ld-center-top" ng-show="prop.inProgress || !prop.isReady">
+            <div class="loader"></div>
+        </div>
+    </div>
+    <div>
+        <script type="text/ng-template" id="ModalNeedConfirmation.html">
+            <div class="modal-fade">
+                <div class="modal-dialog-center">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Редагування інформації</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p>Ви підтверджуєте зміну інформації про потребу?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-success" ng-click="ok()" style="width: 120px;">
+                                <i class="glyphicon glyphicon-pencil"></i>
+                                Так
+                            </button>
+                            <button class="btn btn-danger" ng-click="cancel()" style="width: 110px;">
+                                <i class="glyphicon glyphicon-remove"></i>
+                                Ні
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <style>
+                .modal-dialog {
+                    position: initial;
+                }
+            </style>
+        </script>
+    </div>
+</div>

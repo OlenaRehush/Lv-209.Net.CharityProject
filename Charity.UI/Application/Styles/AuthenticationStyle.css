@@ -1,0 +1,79 @@
+﻿.auth-form {
+    font-size: 16px;
+}
+
+.auth-form input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+}
+
+.auth-form a {
+    color: #A04097;
+    color: var(--color-main);
+    text-decoration: none;
+}
+
+.auth-form a:hover {
+    color: #4C1E47;
+    color: var(--color-main-dark);
+}
+
+.auth-form input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 3px solid #A04097;
+    color: black;
+    width: 100%;
+    max-width: 400px;
+}
+.auth-form
+input:focus{
+    outline-style:none;
+}
+
+.auth-form input[type=submit] {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 3px solid #A04097;
+    background-color: #A04097;
+    color: white;
+    width: 100%;
+    max-width: 400px;
+}
+
+.externalLogin-block
+a:hover{
+    color:white;
+}
+
+.confirm-block {
+    max-width: 400px;
+}
+.externalLogin-block {
+    max-width: 400px;
+    width:100%;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+.auth-form .ng-invalid.ng-dirty {
+    border-color: #FA787E;
+}
+
+.auth-form .ng-valid.ng-dirty {
+    border-color: #A04097;
+    border-color: var(--color-main);
+}
+
+.success-msg .success-color{
+    color: #DFF2BF;
+}
+
+.success-msg .fail-color{
+    color: #FA787E;
+}

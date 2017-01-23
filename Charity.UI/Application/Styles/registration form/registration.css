@@ -1,0 +1,159 @@
+﻿body{
+	margin: 0 auto;
+	background-size: 100% 720px;
+	background-image: url("http://imgview.info/download/20150712/bridge-lake-bokeh-wooden-hd-wallpaper-1920x1080.jpg");
+	background-repeat: no-repeat;
+}
+.Container img{
+	width: 200px;
+	height: 200px;
+	margin-left: 2px;
+	margin-top: -300px;
+}
+.form-content{
+	width: 400px;
+   height: 400px;
+	background-color: rgb(59,66,89);
+	text-align: center;
+	margin: 0 auto;
+	margin-left: 12%;
+	opacity: 0.95;
+	border-radius: 10px;
+	padding-top: 80px;
+	margin-top: 140px;
+	
+}
+.line{
+	height: 600px;
+	width: 3px;
+	background-color:	#03d99d;
+	margin-left:50%; 
+	margin-top: -570px;
+	border-radius: 20px;
+}
+.reg-content{
+	height: 500px;
+	width: 450px;
+	background-color:	rgb(59,66,89);
+	margin-left:60%; 
+	margin-top: -570px;
+	text-align: center;
+	opacity: 0.95;
+	border-radius: 10px;
+	padding-top: 70px;
+	text-align: center;
+	color: #fff;
+}
+.reg-content input[type="text"],.reg-content input[type="password"],.reg-content input[type="file"],.reg-content input[type="tel"],.reg-content input[type="date"]{
+	width: 300px;
+	height: 40px;
+	background-color: #fff;
+	border:none;
+	margin-bottom: 10px;
+	padding-left: 10px;
+	border-radius: 5px;
+	margin-left: 10px;
+
+}
+.reg-content input[type="file"]{
+    display: block;
+ padding: 10px;
+color: #FFF;
+ font-weight: bold;
+ font-family: Tahoma;
+text-align: center;
+ cursor: pointer;
+}
+.reg-content input[type="radio"]{
+	margin-top: 20px;
+}
+.reg-content h2{
+	font-family: arial;
+	
+	margin-top: -40px;
+}
+.reg-content p{
+	font-family: arial;
+	margin-left: 20px;
+	margin-top: 0px;
+}
+.form-content a{
+	color: #fff;
+}
+input[type="text"],input[type="password"],input[type="file"],input[type="date"]{
+	width: 300px;
+	height: 40px;
+	background-color: #fff;
+	border:none;
+	margin-bottom: 30px;
+	padding-left: 10px;
+	border-radius: 5px;
+	-webkit-transition: width 0.4s ease-in-out;
+	-moz-transition: width 0.4s ease-in-out;
+	-o-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+input[type="text"]:focus,input[type="password"]:focus,input[type="file"]:focus,input[type="date"]:focus,input[type="tel"],input[type="data"],input[type="tel"]:focus{
+	width: 350px;
+}
+input[type="submit"]{
+	width: 250px;
+	height: 40px;
+	background-color: #03d99d;
+	border:none;
+	border-radius: 5px;
+	margin-top: 40px;
+	color: #fff;
+	margin-bottom: 20px;
+	-webkit-transition: width 0.4s ease-in-out;
+	-moz-transition: width 0.4s ease-in-out;
+	-o-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+
+}
+input[type="submit"]:hover{
+	width: 300px;
+}
+.tabs {
+    opacity: 0;  /* Прозрачность */
+    visibility: hidden; /* Изначально - спрятан */
+}
+.tab{
+
+	margin-left: 5%;
+	padding-top: 0px;
+
+    position:absolute; /* Абсолютное позиционирование */
+    visibility: hidden;    /* Изначально - спрятан */
+}
+.tabs:target+.tab {
+    opacity: 1; /* Убирает прозрачность */
+    visibility: visible; /* Делает видимым */
+    
+}
+.tabsLink a{  
+        	    
+    background-color:#478CFB; /* Цвет */
+    padding:10px; /* Внутренние отступы */
+    font: bold 12pt "Trebuchet MS", tahoma, verdana, arial narrow, arial; /* Толщина, размер и семейство шрифта */
+    color:#fff; /* Цвет */
+    text-decoration:none; /* Отсутствие нижней линии */
+    position: relative;
+    /* Округление старт */
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    /* Округление конец */
+
+    bottom: 70px;
+}
+.NotVisible
+{
+    visibility:hidden;
+}
+
+

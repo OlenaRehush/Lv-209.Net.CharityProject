@@ -1,0 +1,103 @@
+﻿<div class="main-container" ng-app="client_side" ng-controller="companyControllerEdit">
+    <br>
+    <div class="container">
+        <div class="row ld-center-top" ng-show="inProgress">
+            <div class="loader"></div>
+        </div>
+        <form class="form-horizontal" ng-show="!inProgress" name="CompanyForm" novalidate> 
+            <div class="form-group">
+                <label for="title" class="col-sm-8 control-label">Редагування компанії: {{sharedData.Name}}</label>
+            </div>
+            <div class="form-group">
+                <label for="WebSite" class="col-sm-2 control-label">Повна назва <b class="errortext">*</b></label>
+                <div class="col-sm-10">
+                    <input name="Name" type="text" class="form-control" ng-model="User.FullName" placeholder="повна назва компанії"   required ng-minlength="3" ng-maxlength="80">
+                    <p ng-show="CompanyForm.Name.$error.required" class="errortext">Будь ласка, заповніть це поле</p>
+                    <p ng-show="CompanyForm.Name.$error.minlength" class="errortext">Занадто коротка назва компаніії</p>
+                    <p ng-show="CompanyForm.Name.$error.maxlength" class="errortext">Скоротіть,будь ласка, назву компанії</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="WebSite" class="col-sm-2 control-label">Веб-сайт</label>
+                <div class="col-sm-10">
+                    <input name="webSite" type="url" class="form-control" ng-model="User.WebSite" placeholder="веб-сайт компанії">
+                    <p ng-show="CompanyForm.webSite.$error.url" class="errortext">Перевірте правильність введених даних</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Address" class="col-sm-2 control-label">Адреса <b class="errortext">*</b></label>
+                <div class="col-sm-10">
+                    <input name="Address" type="text" class="form-control" id="autocomplete" ng-model="User.Address" placeholder="Введіть адресу" required ng-minlength="8">
+                    <p ng-show="CompanyForm.Address.$error.required" class="errortext">Будь ласка, заповніть це поле</p>
+                    <p ng-show="CompanyForm.Address.$error.minlength" class="errortext">Перевірте правильність вказаних даних</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Address" class="col-sm-2 control-label">Дата заснування</label>
+                <div class="col-sm-4">
+                    <div class='input-group date' id='datetimepicker1'>
+                        <input type='text' class="form-control" id="DateOfBirth" ng-model="parsedDateOfUser" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Опис <b class="errortext">*</b></label>
+                <div class="col-sm-10">
+                    <textarea name="Description" class="form-control" rows="3" id="Description" ng-model="User.Description" required ng-minlength="3"></textarea>
+                    <p ng-show="CompanyForm.Description.$error.required" class="errortext">Введіть декілька слів про компанію</p>
+                    <p ng-show="CompanyForm.Description.$error.minlength" class="errortext">Доповніть, будь ласка, свій опис</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6 col-md-offset-2" ng-click="prop.NoValid = true">
+                    <input id="" name="submit" ng-click="CompanyForm.$valid&&openModal()" type="submit" value="Підтвердити оновлення" class="btn btn-success">
+                </div>
+                <div class="col-md-offset-10">
+                    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>  <input id="" name="submit" ng-click="backToCompanyList()" type="submit" value="Відмінити оновлення" class="btn btn-warning">
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div>
+        <script type="text/javascript">
+                                    $(function () {
+                                        $('#datetimepicker1').datetimepicker({
+                                            format: 'MM/DD/YYYY'
+                                        });
+                                    });
+        </script>
+        <script type="text/ng-template" id="ModalCompanyConfirmation.html">
+            <div class="modal-fade">
+                <div class="modal-dialog-center">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Редагування інформації</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p class="lead text-warning">Ви підтверджуєте зміну даних компанії?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-success" ng-click="ok()" style="width: 120px;">
+                                <i class="glyphicon glyphicon-pencil"></i>
+                                Так
+                            </button>
+                            <button class="btn btn-danger" ng-click="cancel()" style="width: 110px;">
+                                <i class="glyphicon glyphicon-remove"></i>
+                                Ні
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <style>
+                .modal-dialog {
+                    position: initial;
+                }
+            </style>
+        </script>
+    </div>
+</div>

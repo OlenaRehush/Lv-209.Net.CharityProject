@@ -1,0 +1,546 @@
+﻿
+<link href="Application/Styles/Profile/profile.css" rel="stylesheet" />
+
+<div id="profile" class="container margin10-bottom" ng-show="prop.isReady">
+    <div class="row margin5-top">
+        <div class="col-sm-offset-1 col-sm-10">
+            <div class="col-sm-4 margin2-top">
+                <div class="row margin5-bottom" ng-show="user.PhotoURL">
+                    <img src="{{user.PhotoURL}}" class="profile-cover">
+                </div>
+                <div class="row">
+                    <input type="button" class="btn btn-default btn-block" value="Редагувати профіль" ng-click="edit()" />
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="col-sm-offset-1">
+                    <div class="row  margin2-bottom">
+                        <h3 ng-if="prop.isUser || prop.isAdmin">Кабінет користувача</h3>
+                        <h3 ng-if="prop.isOrg">Інформація про організацію</h3>
+                        <h3 ng-if="prop.isComp">Інформація про компанію</h3>
+                    </div>
+                    <div class="row margin1-top">
+                        <div ng-if="prop.isUser || prop.isAdmin" class="col-sm-4">Ім'я</div>
+                        <div ng-if="prop.isOrg || prop.isComp" class="col-sm-4">Найменування</div>
+                        <div class="col-sm-8"><b>{{user.FullName}}</b></div>
+                    </div>
+                    <div class="row margin1-top" ng-if="user.PhoneNumber">
+                        <div class="col-sm-4">Контактний номер телефону</div>
+                        <div class="col-sm-8"><b>{{user.PhoneNumber}}</b></div>
+                    </div>
+                    <div class="row margin1-top">
+                        <div ng-if="prop.isUser || prop.isAdmin" class="col-sm-4">Дата народження</div>
+                        <div ng-if="prop.isOrg || prop.isComp" class="col-sm-4">Дата заснування</div>
+                        <div class="col-sm-8"><b>{{user.Birthday.Day + '/' + user.Birthday.Month + '/' + user.Birthday.Year}}</b></div>
+                    </div>
+                    <div class="row margin1-top" ng-if="user.WebSite">
+                        <div class="col-sm-4">Сайт</div>
+                        <div class="col-sm-8"><b><a my-target ng-href="{{user.WebSite}}">{{user.WebSite}}</a></b></div>
+
+                    </div>
+                    <div class="row margin1-top" ng-if="user.Description">
+                        <div class="col-sm-4">Короткий опис</div>
+                        <div class="col-sm-8"><b>{{user.Description}}</b></div>
+                    </div>
+                    <div ng-if="user.Address" class="row margin1-top">
+                        <div class="col-sm-4">Фізична адреса</div>
+                        <div class="col-sm-8"><b>{{user.Address}}</b></div>
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+
+    <div class="row margin3-top">
+        <div class="col-sm-offset-1 col-sm-10">
+
+            <!-- User info panel -->
+            <div ng-if="prop.isUser || prop.isAdmin">
+                <div class="row border-top">
+                    <div class="col-sm-10 ">
+                        <h3>Виконані вами потреби</h3>
+                    </div>
+                    
+                </div>
+
+                <div class="row">
+                    <div ng-repeat="model in user.Requests">
+                        <a class="col-sm-12 padding1-top resource-row" ng-click="Redirect.Need(model.Need.Id)">
+                            <div class="col-sm-3">
+                                <p>{{model.Need.Name}}</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <p>Від {{model.Need.DateCreated|date:'dd.MM.yyyy'}} по {{model.Need.DateEnd|date:'dd.MM.yyyy'}}</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <p>{{model.Description}}</p>
+                            </div>
+                            <div class="col-sm-2">
+                                <p>{{model.Need.TypeOfNeed.Type}}</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Сompany info panel -->
+            <div ng-if="prop.isComp">
+                <div class="row border-top">
+                    <div class="col-sm-10 ">
+                        <h3>Ресурси компанії</h3>
+                    </div>
+                    <div class="col-sm-1">
+                        <h2>
+                            <button class="btn btn-default btn-block" ng-click="prop.openEditForm = !prop.openEditForm">
+                                <span ng-show="!prop.openEditForm" class="glyphicon glyphicon-plus"></span>
+                                <span ng-show="prop.openEditForm" class="glyphicon glyphicon-minus"></span>
+                            </button>
+                        </h2>
+
+                    </div>
+                </div>
+                <div class="row border-bottom add-recource">
+                    <form name="ResourceForm" id="ResourceForm" class="col-sm-offset-1 margin1-bottom" ng-show="prop.openEditForm" novalidate>
+                        <div class="row">
+                            <h3 ng-if="!prop.Change">Новий ресурс</h3>
+                            <h3 ng-if="prop.Change">Змінити ресурс</h3>
+                        </div>
+                        <div class="row">
+                            <h5>Назва ресурсу</h5>
+                            <input name="Name" class="form-control" type="text" ng-model="Resource.Model.Name" placeholder="Короткий опис вашого ресурсу" required />
+                            <div ng-show="ResourceForm.Name.$error.required && prop.NoValid" class="errortext">Будь ласка, заповніть це поле</div>
+                        </div>
+                        <div class="row">
+                            <h5>Опис ресурсу</h5>
+                            <textarea name="Desc" class="form-control" rows="5" ng-model="Resource.Model.Description" placeholder="Опишіть для кого і що ви можете зробити чи надати" required></textarea>
+                            <div ng-show="ResourceForm.Desc.$error.required && prop.NoValid" class="errortext">Будь ласка, заповніть це поле</div>
+                        </div>
+                        <div class="row">
+                            Фото
+                            <input type="text" class="form-control" ng-model="Resource.Model.ImageLink" />
+                        </div>
+                        <div class="row">
+                            <label>
+                                </br>
+                                <div class='input-group' style="width:700px;margin: 1px;">
+                                    <input ng-model="form.image" type="file" class="form-control" accept="image/*" onchange="FileGetter(this)" >
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-arrow-down"></span>
+                                    </span>
+                                </div>
+                                <div class="errortext" style="text-align:center;">Не більше 1 мегабайту</div>
+                                <input type="submit" accept=".bmp,.jpg,.jpeg,.gif,.png" id="submit" value="Завантажити" class="btn btn-default btn-block" ng-click="uploadResourceImage()" />
+                                <img ng-src="{{image_source_resource}}" class="row margin5-bottom" style="width:300px;display:block;margin:auto;width:40%;margin:10px auto auto auto;padding:0%;">
+                                </label>
+                                 </div>
+                        <div class="row margin1-top margin3-bottom" ng-click="prop.NoValid = true">
+                            <div class="form-inline">
+                                <span ng-click="prop.NoValid = true">
+                                    <button type="submit" class="btn btn-success margin2-left" ng-if="!prop.Change" ng-click="ResourceForm.$valid && Resource.Add()">Додати</button>
+                                </span>
+                                <span ng-click="prop.NoValid = false">
+                                    <button type="button" class="btn btn-info margin2-left" ng-if="prop.Change" ng-click="ResourceForm.$valid && Resource.CleanForm()">Новий ресурс</button>
+                                </span>
+                                <span ng-click="prop.NoValid = true">
+                                    <button type="button" class="btn btn-warning margin2-left" ng-if="prop.Change" ng-click="ResourceForm.$valid && Resource.Edit.PendingChanges()">Внести зміни</button>
+                                </span>
+                                <span ng-click="prop.NoValid = false">
+                                    <button type="button" class="btn btn-danger margin2-left" ng-if="prop.Change" ng-click="Resource.Delete()">Видалити існуючий</button>
+                                </span>
+
+                            </div>
+                        </div>
+
+
+                        <div class="row ld-center" ng-show="prop.inProgress">
+                            <div class="loader"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="row">
+                    <div ng-repeat="model in user.Company.Resources">
+                        <a class="col-sm-12 padding1 resource-row" ng-click="Resource.Edit(model)">
+                            <div class="col-sm-2">
+                                <img ng-src="{{model.ImageLink}}" />
+                            </div>
+                            <div class="col-sm-offset-1 col-sm-8">
+                                <div class="row">
+                                    <h3>{{model.Name}}</h3>
+                                </div>
+                                <div class="row">
+                                    <p>{{model.Description}}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Organization info panel -->
+            <div ng-if="prop.isOrg">
+                <div class="row border-top">
+                    <div class="col-sm-8">
+                        <h3>Потреби організації</h3>
+                    </div>
+                    <div class="col-sm-2">
+                        <h2>
+                            <select class="selectpicker form-control" ng-model="prop.stateItem" ng-options="item.name for item in stateOptions.stores"></select>
+                        </h2>
+                    </div>
+                    <div class="col-sm-2">
+                        <h2>
+                            <button class="btn btn-success btn-block" data-toggle="modal" data-target="#AddNewNeed" ng-click="Need.CleanForm()">Нова потреба</button>
+                        </h2>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div ng-repeat="model in list|filter:stateFilter">                       
+                        <a class="col-sm-12 padding1 resource-row" data-toggle="{{model.State != 2 ? 'modal' : 'none' }}" data-target="#RequestList" ng-click="model.State != 2 && KeepModel(model)" ng-if="stateFilter(model)">
+                            <div class="col-sm-2">
+                                <img ng-src="{{model.ImageLink}}" />
+                            </div>
+                            <div class="col-sm-offset-1 col-sm-7">
+                                <div class="row">
+                                    <h4>{{model.Name}}</h4>
+                                </div>
+                                <div class="row">
+                                    <p>Дата створення {{model.DateCreated|date:"dd.MM.yyyy"}}</p>
+                                    <p ng-if="model.DateEnd">Дата завершення {{model.DateEnd|date:' dd.MM.yyyy'}}</p>
+                                </div>
+                                <div class="row">
+                                    <b>{{model.TypeOfNeed.Type}}</b>
+                                </div>
+                                <div class="row">
+                                    <p>{{model.Description}}</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <h4 class="text-info" ng-if="model.State == 0">Не виконано</h4>
+                                <h4 class="text-success" ng-if="model.State == 1">Виконано</h4>
+                                <h4 class="text-danger" ng-if="model.State == 2">Відмінено</h4>
+                                <h4 class="text-primary" ng-if="model.State == 3">В процесі</h4>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row ld-center-top" ng-show="!prop.isReady">
+    <div ng-if="prop.error">
+        <h4 class="errortext">Помилка завантаження даних</h4>
+        <p>{{prop.message}}</p>
+    </div>
+    <div class="loader"></div>
+</div>
+
+<!-- Modal window-->
+
+<div id="RequestList" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body container">
+
+                <div class="row margin5-top">
+                    <div class="col-sm-9">
+                        <div class="col-sm-offset-1 col-sm-3 text-center" ng-click="prop.page = 1" ng-if="Need.Model.State != 2">
+                            <a ng-if="prop.page == 1" class="lead ch-color focused">Запити</a>
+                            <a ng-if="prop.page != 1" class="lead ch-color">Запити</a>
+                        </div>
+                        <div class="col-sm-4 text-center" ng-click="prop.page = 2" ng-if="prop.Change && Need.Model.State == 0">
+                            <a ng-if="prop.page == 2" class="lead ch-color focused">Потреба</a>
+                            <a ng-if="prop.page != 2" class="lead ch-color">Потреба</a>
+                        </div>
+                        <div class="col-sm-3 text-center" ng-click="prop.page = 3" ng-if="Need.Model.State != 0">
+                            <a ng-if="prop.page == 3" class="lead ch-color focused">Виконання</a>
+                            <a ng-if="prop.page != 3" class="lead ch-color">Виконання</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row margin5-top">
+                    <div class="col-sm-9">
+
+                        <div class="charity-border" ng-if="prop.page == 1">
+                            <div class="row margin5-left">
+                                <h3>"{{Need.Model.Name}}"</h3>
+                            </div>
+                            <div class="row col-sm-offset-1" ng-if="Need.Model.NeedRequests.length > 0" ng-repeat="request in Need.Model.NeedRequests">
+                                <div class="col-sm-11 gray-border">
+                                    <div class="row text-left ">
+
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <p>{{request.User.FullName}}</p>
+                                            </div>
+                                            <div class="row">
+                                                <p>Рейтинг {{request.User.Rating}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <p>{{request.User.Email}}</p>
+                                            </div>
+                                            <div class="row">
+                                                <p>{{request.Phone}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="row">
+                                                <p>{{request.Description}}</p>
+                                            </div>
+                                            <div class="row">
+                                                <p ng-if="IsAnonymous">Бажає залишитись анонімом</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-1 choose">
+                                            <a ng-if="Need.Model.State == 0" ng-click="Need.ChooseUser(request)" ng-show="!prop.inProgress">Вибрати</a>
+                                            <a ng-if="Need.Model.State == 3 && request.Status == true" ng-click="Need.CancelChoose(request)" ng-show="!prop.inProgress">Відмінити виконання</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row ld-center margin2-top margin2-bottom" ng-show="prop.inProgress">
+                                <div class="loader"></div>
+                            </div>
+                            <div class="col-sm-offset-1" ng-if="!Need.Model.NeedRequests || Need.Model.NeedRequests.length == 0">
+                                <h4 class="text-left text-danger">Запити поки що відсутні</h4>
+                            </div>
+                        
+                        </div>
+
+                        <div class="col-sm-offset-1 col-sm-10" ng-if="prop.page == 2">
+                            <div class="row add-recource">
+                                <form name="NeedForm" id="NeedForm" class="col-sm-offset-1 margin1-bottom" novalidate>
+                                    <div class="row">
+                                        <h5>Назва потреби</h5>
+                                        <input name="Name" ng-maxlength="80" class="form-control" type="text" ng-model="Need.Model.Name" placeholder="Коротка назва, що опише вашу потребу" required />
+                                        <div ng-show="NeedForm.Name.$error.required && prop.NoValid" class="errortext">Будь ласка, заповніть це поле</div>
+                                        <div ng-show="NeedForm.Name.$error.maxlength && prop.NoValid" class="errortext margin1">Максимальна кількість символів 80</div>
+                                    </div>
+                                    <div class="row">
+                                        <h5>Тип потреби</h5>
+                                        <select name="type" class="form-control" id="singleSelect" ng-model="Need.Model.TypeOfNeed.Id" required>
+                                            <option value="1" ng-selected="Need.Model.TypeOfNeed.Id == 1">Матеріальні</option>
+                                            <option value="2" ng-selected="Need.Model.TypeOfNeed.Id == 2">Мрії</option>
+                                            <option value="3" ng-selected="Need.Model.TypeOfNeed.Id == 3">Волонтер</option>
+                                        </select>
+                                        <div ng-show="NeedForm.type.$error.required && prop.NoValid" class="errortext">Будь ласка, виберіть одне значення</div>
+                                    </div>
+                                    <div class="row">
+                                        Фото
+                                        <input type="text" class="form-control" ng-model="Need.Model.ImageLink" />
+                                        <label>
+                                            <div class='input-group'>
+                                                <input ng-model="form.image" type="file" class="form-control" accept="image/*" onchange="FileGetter(this)">
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-arrow-down"></span>
+                                                </span>
+                                            </div>
+                                        </label>
+                                        <div class="errortext" style="text-align:center;">Не більше 1 мегабайту</div>
+                                        <input type="submit" accept=".bmp,.jpg,.jpeg,.gif,.png" id="submit" value="Завантажити" class="btn btn-default btn-block" ng-click="uploadNeedImageEdit()" />
+                                        <img ng-src="{{image_source_needEdit}}" style="width:300px;display:block;margin:auto;width:40%;margin:10px auto auto auto;padding:0%;">
+                                    </div>
+                                    <div class="row">
+                                        <h5>Опис потреби</h5>
+                                        <textarea name="Desc" ng-maxlength="400" class="form-control" rows="7" ng-model="Need.Model.Description" placeholder="Опишіть вашу потребу більш детально" required></textarea>
+                                        <div ng-show="NeedForm.Desc.$error.required && prop.NoValid" class="errortext">Будь ласка, заповніть це поле</div>
+                                        <div ng-show="NeedForm.Desc.$error.maxlength && prop.NoValid" class="errortext margin1">Максимальна кількість символів 400</div>
+                                    </div>
+                                    <div class="row ld-center" ng-show="prop.inProgress">
+                                        <div class="loader"></div>
+                                    </div>
+                                    <div class="row margin2-top margin3-bottom">
+                                        <div class="form-inline">
+                                            <span ng-click="prop.NoValid = true">
+                                                <button type="button" class="btn btn-warning margin2-left" ng-click="NeedForm.$valid && Need.Edit.PendingChanges()" ng-disabled="prop.inProgress">Внести зміни</button>
+                                            </span>
+                                            <span>
+                                                <button type="button" class="btn btn-danger margin2-left" data-toggle="modal" data-target="#CancelNeed">Відмінити потребу</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-offset-1 col-sm-10 text-center" ng-if="prop.page == 3">
+                            
+                            <div class="row" ng-if="Need.Model.State == 3">
+                                <form name="confirmForm" id="confirmFrom" class="col-sm-offset-1 margin1-bottom" novalidate>
+                                    <div class="row">
+                                        <h5>Оцініть волонтера</h5>
+                                        <select name="desc" class="form-control" id="singleSelect" ng-model="Feedback.Grade" required>
+                                            <option value="1" ng-selected="Feedback.Grade == 1">1</option>
+                                            <option value="2" ng-selected="Feedback.Grade == 2">2</option>
+                                            <option value="3" ng-selected="Feedback.Grade == 3">3</option>
+                                            <option value="4" ng-selected="Feedback.Grade == 4">4</option>
+                                            <option value="5" ng-selected="Feedback.Grade == 5">5</option>
+                                        </select>
+                                        <div ng-show="confirmForm.desc.$error.required && prop.NoValid" class="errortext">Оцінювання волонтера обов'язкове</div>
+                                    </div>
+                                    <div class="row">
+                                        <h5>Відгук</h5>
+                                        <textarea name="feedback" ng-maxlength="400" placeholder="Напишіть свій фітбек на волонтера, та подяку" type="text" rows="7" class="form-control" ng-model="Feedback.Feedback.Data" required />
+                                        <div ng-show="confirmForm.feedback.$error.required && prop.NoValid" class="errortext">Будь ласка, заповніть це поле</div>
+                                        <div ng-show="confirmForm.feedback.$error.maxlength && prop.NoValid" class="errortext margin1">Максимальна кількість символів 400</div>
+                                    </div>
+                                    <div class="row">
+                                        <h5>Фото</h5>
+                                            <input type="text" class="form-control" ng-model="Feedback.Photos.Data" />
+                                        </div>
+                                    <div class="row">
+                                        <label>
+                                            <div class='input-group'>
+                                                <input ng-model="form.image" type="file" class="form-control" accept="image/*" onchange="FileGetter(this)">
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-arrow-down"></span>
+                                                </span>
+                                            </div>
+                                        </label>
+                                        <div class="errortext" style="text-align:center;">Не більше 1 мегабайту</div>
+                                        <input type="submit" accept=".bmp,.jpg,.jpeg,.gif,.png" id="submit" value="Завантажити" class="btn btn-default btn-block" ng-click="uploadReportImage()" />
+                                        <img ng-src="{{image_source_report}}" class="row margin5-bottom" style="width:300px;display:block;margin:10px auto auto auto;padding:0%;">
+                                    </div>
+                                    <div class="row">
+                                        <h5>Лінк на відео</h5>
+                                        <input type="text" class="form-control" ng-model="Feedback.Video.Data" />
+                                    </div>
+                                    <div class="row ld-center margin1-top margin1-bottom" ng-show="prop.inProgress">
+                                        <div class="loader"></div>
+                                    </div>
+                                    <div class="row margin3-top" ng-click="prop.NoValid = true">
+                                        <button type="button" class="btn btn-success margin2-left" ng-click="confirmForm.$valid && Need.Confirm()" ng-disabled="prop.inProgress" ng-if="Need.Model.State == 3">Підтвердити виконання</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="row" ng-if="Need.Model.State == 1" ng-repeat="media in Need.Model.Media">
+                                <div class="col-sm-offset-3 col-sm-6">
+                                    <img ng-if="media.Type == 0" ng-src="{{media.Data}}" />
+                                    <p ng-if="media.Type == 2">{{media.Data}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger margin2-left" data-toggle="modal" data-target="#CancelNeed" ng-if="Need.Model.State == 3">Відмінити потребу</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="AddNewNeed" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="col-sm-offset-1 col-sm-10">
+                            <div class="row add-recource">
+                                <h3 class="">Додати потребу</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body container">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <div class="col-sm-offset-1 col-sm-10">
+                                <div class="row add-recource">
+                                    <form name="AddNeedForm" id="AddNeedForm" class="col-sm-offset-1 margin1-bottom" novalidate>
+                                        <div class="row">
+                                            <h5>Назва потреби</h5>
+                                            <input name="Name" ng-maxlength="80" class="form-control" type="text" ng-model="Need.Model.Name" placeholder="Коротка назва, що опише вашу потребу" required />
+                                            <div ng-show="AddNeedForm.Name.$error.required && prop.NoValid" class="errortext">Будь ласка, заповніть це поле</div>
+                                            <div ng-show="AddNeedForm.Name.$error.maxlength && prop.NoValid" class="errortext margin1">Максимальна кількість символів 80</div>
+                                        </div>
+                                        <div class="row">
+                                            <h5>Тип потреби</h5>
+                                            <select name="type" class="form-control" id="singleSelect" ng-model="Need.Model.TypeOfNeed.Id" required>
+                                                <option value="1" ng-selected="Need.Model.TypeOfNeed.Id == 1">Матеріальні</option>
+                                                <option value="2" ng-selected="Need.Model.TypeOfNeed.Id == 2">Мрії</option>
+                                                <option value="3" ng-selected="Need.Model.TypeOfNeed.Id == 3">Волонтер</option>
+                                            </select>
+                                            <div ng-show="AddNeedForm.type.$error.required && prop.NoValid" class="errortext">Будь ласка, виберіть одне значення</div>
+                                        </div>
+                                        <div class="row">
+                                                Фото
+                                                <input type="text" class="form-control" ng-model="Need.Model.ImageLink" />
+                                        </div>
+                                        <div class="row">
+                                            <label>
+                                                <div class='input-group'>
+                                                    <input ng-model="form.image" type="file" class="form-control" accept="image/*" onchange="FileGetter(this)">
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-arrow-down"></span>
+                                                    </span>
+                                                </div>
+                                            </label>
+                                            <script type="text/javascript">
+                            var Files = [];
+                            function FileGetter(element) {
+                                Files[0] = element.files[0];
+                            }
+                                            </script>
+                                            <div class="errortext" style="text-align:center;">Не більше 1 мегабайту</div>
+                                            <input type="submit" accept=".bmp,.jpg,.jpeg,.gif,.png" id="submit" value="Завантажити" class="btn btn-default btn-block" ng-click="uploadNeedImageAdd()" />
+                                            <img ng-src="{{image_source_needAdd}}" class="row margin5-bottom" style="width:300px;display:block;margin:auto;width:40%;margin:10px auto auto auto;padding:0%;">
+                                        </div>
+                                        <div class="row">
+                                            <h5>Опис потреби</h5>
+                                            <textarea name="Desc" ng-maxlength="400" class="form-control" rows="7" ng-model="Need.Model.Description" placeholder="Опишіть вашу потребу більш детально" required></textarea>
+                                            <div ng-show="AddNeedForm.Desc.$error.maxlength && prop.NoValid" class="errortext margin1">Максимальна кількість символів 400</div>
+                                            <div ng-show="AddNeedForm.Desc.$error.required && prop.NoValid" class="errortext">Будь ласка, заповніть це поле</div>
+                                        </div>
+                                        <div class="row ld-center" ng-show="prop.inProgress">
+                                            <div class="loader"></div>
+                                        </div>
+                                        <div class="row margin1-top margin3-top margin3-bottom">
+                                            <div class="form-inline">
+                                                <span ng-click="prop.NoValid = true">
+                                                    <button type="submit" class="btn btn-success margin2-left" ng-click="AddNeedForm.$valid && Need.Add()" ng-disabled="prop.inProgress">Додати</button>
+                                                </span>
+                                                <span>
+                                                    <button type="button" class="btn btn-default margin3-left" data-dismiss="modal">Закрити</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="CancelNeed" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Відміна потреби</h4>
+            </div>
+            <div class="modal-body">
+                <p>Ви більше не зможете привести потребу в активний стан, ви впевнені що хочете відмінити потребу?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="Need.Cancel()" ng-disabled="prop.inProgress">Відмінити</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+            </div>
+        </div>
+
+    </div>
+</div>

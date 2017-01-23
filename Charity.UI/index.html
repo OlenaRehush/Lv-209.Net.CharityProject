@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<link rel="icon" href="/Resources/favicon.ico"/>
+    <title>Соціальна карта відповідального міста</title>
+    <meta charset="utf-8" />
+    <base href="/" />
+</head>
+<body ng-app="client_side">
+    <div id="header" ng-controller="indexController" ng-init="check()">
+        <div class="ch-header">
+            <div class="navbar navbar-fixed-top">
+                <div class="container-full">
+                    <div class="row">
+                        <div class="col-lg-3">                            
+                                <a href="/"><img src="Application/Styles/Layout/logo-sm.png" id="logo"></a>                             
+                        </div>                           
+                        <div class="col-lg-8 centerMenu">
+                            <ul class="nav navbar-nav pull-right mainMenuFont">
+                                <li ng-show="prop.IsUploadHeaderCount && RequestCount > 0" class="dropdown header-icon">
+                                    <a class="dropdown-toggle noselect glyphicon glyphicon-envelope" data-toggle="dropdown"><span class="badge">{{RequestCount}}</span></a>
+                                    <ul class="dropdown-menu ch-header-dropdown">
+                                        <li ng-repeat="need in RequestsArray"><a><b>{{need.User.FullName}}</b> хоче виконати <br />потребу <b>"{{need.Need.Name}}"</b> </a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="profile">Переглянути деталі</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="need">Потреби </a></li>
+                                <li><a href="about">Про нас</a></li>
+                                <li ng-show="!authentication.isAuth"><a href="login">Увiйти</a></li>
+                                <li ng-show="authentication.isAuth" class="dropdown">
+                                    <a class="dropdown-toggle noselect" data-toggle="dropdown">{{authentication.userName}}<span class="caret"></span></a>
+                                    <ul class="dropdown-menu ch-header-dropdown">
+                                        <li><a href="profile">Особистий кабінет</a></li>
+                                        <li ng-if="IsAdmin"><a href="panel">Панель адміністратора</a></li>
+                                        <li class="divider"></li>
+                                        <li><a ng-click="logOut()">Вийти</a></li>
+                                    </ul>
+                                </li>
+                              
+                            </ul> 
+                        </div> 
+                        <div class="col-lg-2">  </div>                       
+                    </div>         
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="body" class="margin3-bottom"><div ng-view></div></div>
+
+    <div class="footer footer-modal">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="col-lg-3"> </div>
+                    <div class="col-lg-2">
+                        <div id="lefticonMask" style="background-color: #a04097;" class="center-block"></div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div id="iconMask" style="background-color: #a04097;" class="center-block"></div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div id="righticonMask" style="background-color: #a04097;" class="center-block"></div>
+                    </div>
+                    <div class="col-lg-3"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/bootstrap-expansion.css" rel="stylesheet" />
+    <link href="Content/bootstrap-social.css" rel="stylesheet" />
+    <link href="Application/Styles/Shared/site.css" rel="stylesheet" />
+    <link href="Application/Styles/Admin/users.css" rel="stylesheet" />
+    <link href="Application/Styles/Profile/profile.css" rel="stylesheet" />
+    <link href="Application/Styles/Layout/header.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="Application/Styles/Layout/footer.css">
+
+    <!--Additional important scripts-->
+    <script src="Scripts/jquery-3.1.1.min.js"></script>
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyC26RrYyS9Rb5kgE9oU1JabUQs7cf7DX2k&sensor=false&libraries=places&language=uk" type="text/javascript"></script>
+
+    <script src="Scripts/bootstrap.min.js"></script>
+    <!--End additional-->
+    <script src="Scripts/angular.js"></script>
+    <!--Route-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-animate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.1.2/ui-bootstrap-tpls.min.js"></script>
+    <script src="Scripts/angular-table.min.js"></script>
+    <script src="Scripts/angular-tabs.min.js"></script>
+    <script src="Scripts/angular-route.min.js"></script>
+    <script src="Scripts/angular-local-storage.min.js"></script>
+    <script src="Application/routes.js"></script>
+
+    <script src="Scripts/angular-table.min.js"></script>
+    <script src="Scripts/angular-tabs.min.js"></script>
+    <script src="Scripts/moment.js"></script>
+    <script src="Scripts/bootstrap-datetimepicker.js"></script>
+    <link href="Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <script src="Scripts/moment-with-locales.js"></script>
+   <!--External Login-->
+    <script src="Application/Controllers/Authentication/ExternalLoginController.js"></script>
+    <script src="Application/Services/AuthService.js"></script>
+    <script src="Application/Services/InterceptorService.js"></script>
+    <script src="Application/Controllers/Authentication/LoginController.js"></script>
+    <script src="Application/Controllers/Authentication/SignUpController.js"></script>
+    <script src="Application/Controllers/IndexController.js"></script>
+    <script src="Application/Controllers/adminPanelController.js"></script>
+    <script src="Application/Controllers/PasswordRecoveryController.js"></script>
+    <script src="Application/Controllers/organizationController.js"></script>
+    <script src="Application/Controllers/socialWorkersController.js"></script>
+    <script src="Application/Controllers/filtrationModule.js"></script>        <!--Company controller-->
+    <script src="Application/Controllers/needController.js"></script>
+    <script src="Application/Controllers/needPageController.js"></script>
+    <script src="Application/Controllers/historyController.js"></script>
+    <script src="Application/Controllers/profileController.js"></script>
+    <script src="Application/Controllers/userController.js"></script>
+    <script src="Application/Controllers/needsController.js"></script>
+    <script src="Application/Controllers/performNeedController.js"></script>
+    <script src="Application/Controllers/registerNewUserController.js"></script>
+    <script src="Application/Controllers/GoogleAuthentication.js"></script>
+    <script src="Application/Controllers/addNeed.js"></script>
+    <script src="Scripts/ngActivityIndicator.js"></script>
+    <script src="Application/Controllers/InfoController.js"></script>
+    <script src="Scripts/dirPagination.js"></script>
+    <!--End Route-->
+
+</body>
+</html>

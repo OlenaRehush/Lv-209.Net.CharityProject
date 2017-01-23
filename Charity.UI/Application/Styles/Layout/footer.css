@@ -1,0 +1,30 @@
+﻿#footer {
+    border-top: 1px solid lightgrey;
+}
+
+.footer-modal {
+    margin: 0;
+    bottom: 0;
+    height:100px;
+    box-sizing: inherit;
+    position: fixed;
+    width: 100%;
+    background-image:url('footer2.png');
+}
+
+/*li > a:hover {
+    color: var(--color-text);
+}*/
+
+#footer h3 {
+    color: var(--color-Brighter);
+}
+
+.navbar {
+    margin-bottom: 0px;
+}
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}

@@ -1,0 +1,53 @@
+﻿<script src="/Application/Scripts/map.js"></script>
+<script src="/Application/Scripts/sidebar.js"></script>
+<link href="/Application/Styles/Layout/home.css" rel="stylesheet" />
+<div class="ld-center-top">
+    <div class="loader"></div>
+</div>
+<div hidden id="homePageContent" class="container-fluid padding0">
+        <div hidden class="b-popup" id="socialworkerspopup">
+            <div class="b-popup-content">
+                <a href="#" id="close-window-button" class="socialworkers"></a>
+                <div class="popup-scrollbar">
+                    <ul class="spheres">
+                        <li><label><input id="1" class="sphere-list" type="checkbox">Багатодітні сім'ї</label></li>
+                        <li><label><input id="2" class="sphere-list" type="checkbox">Малозабезпечені сім'ї</label></li>
+                        <li><label><input id="3" class="sphere-list" type="checkbox">Учасники Антитерористичної операції</label></li>
+                        <li><label><input id="4" class="sphere-list" type="checkbox">Внутрішньо-переміщені особи</label></li>
+                        <li><label><input id="5" class="sphere-list" type="checkbox">Прийомні сім'ї, Дитячі будинки сімейного типу</label></li>
+                        <li><label><input id="6" class="sphere-list" type="checkbox">Особи, які постраждали від насильства в сім'ї та торгівлі людьми</label></li>
+                        <li><label><input id="7" class="sphere-list" type="checkbox">Особи, які відбували покарання у вигляді обмеження волі або позбавлення волі на певний строк</label></li>
+                        <li><label><input id="8" class="sphere-list" type="checkbox">Діти-сироти</label></li>
+                        <li><label><input id="9" class="sphere-list" type="checkbox">Діти, позбавлені батьківського піклування</label></li>
+                        <li><label><input id="10" class="sphere-list" type="checkbox">Особи з числа дітей-сиріт та дітей, позбавлених батьківського піклування</label></li>
+                        <li><label><input id="11" class="sphere-list" type="checkbox">Пенсіонери</label></li>
+                        <li><label><input id="12" class="sphere-list" type="checkbox">Одинокі непрацездатні громадяни</label></li>
+                        <li><label><input id="13" class="sphere-list" type="checkbox">Інваліди</label></li>
+                        <li><label><input id="14" class="sphere-list" type="checkbox">Ветерани війни та праці</label></li>
+                        <li><label><input id="15" class="sphere-list" type="checkbox">Одинокі матері</label></li>
+                        <li><label><input id="16" class="sphere-list" type="checkbox">Громадяни, які постраждали внаслідок Чорнобильської катастрофи</label></li>
+                        <li><label><input id="17" class="sphere-list" type="checkbox">Бездомні особи</label></li>
+                        <li><label><input id="18" class="sphere-list" type="checkbox">Біженці</label></li>
+                        <li><label><input id="19" class="sphere-list" type="checkbox">Особи, які хворіють на рідкісні невиліковні захворювання</label></li>
+                    </ul>
+                    <center><button type="button" id="btn-showall" class="homepage-popup-btn">Відобразити усі</button><button type="button" id="btn-clear" class="homepage-popup-btn">Очистити</button></center>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1 padding0 layout-sidebar">
+            <div class="col-lg-5" style="padding-left: 0px;">
+                <div id="guest-navigation">
+                    <ul>
+                        <li><a href="#" class="entypo-folder">Соціальна сфера</a></li>
+                        <li><a href="#" class="entypo-users">Органiзацiї</a></li>
+                        <li><a href="#" class="entypo-box">Компанiї</a> </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12 padding0">
+            <div id="map_canvas" style="height:85vh;"></div>
+            <div id="map_legend"></div>
+        </div>
+    </div>

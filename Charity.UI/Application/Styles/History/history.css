@@ -1,0 +1,23 @@
+﻿.historyTable{
+    margin-top:100px;
+}
+
+.historyTable th{
+    /*text-align:center;*/
+    background-color:#1b5e20;
+    color:white;
+}
+
+.historyTable td{
+    /*text-align:center;*/ 
+    vertical-align:middle;
+}
+
+.historyList{
+    margin-top:30px;
+}
+
+.searchText{
+    margin-top:20px;
+    text-align:right;
+}

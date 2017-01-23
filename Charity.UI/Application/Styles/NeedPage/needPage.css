@@ -1,0 +1,155 @@
+﻿.needInfo{
+    margin-top:10%;
+    margin-bottom:7%;
+    background-color:white;
+    border-color:#9c27b0;
+    border-style:solid;
+    border-width:1px;
+    border-radius:6px;
+}
+
+.tableMargin{
+    margin-left:20px;
+}
+
+.media{
+    border-color:#9c27b0;
+    border-style:solid;
+    border-radius:6px;
+    margin-bottom:30px;
+    border-width:1px;
+}
+
+.mainPage{
+    /*background-color:#bbdefb;*/
+    /*position:fixed;*/
+    margin-top:20px;
+    height:100%;
+}
+
+.needImage{
+    width:400px;
+    margin-left:20px;
+    margin-top:20px;
+}
+
+.tableInfo td, .tableInfo td{
+    background-color:white;
+    border-collapse:collapse;
+    color:#000;
+    border-color:white;
+}
+
+.tableInfo td { 
+    height: 40px; 
+}
+
+
+
+.feedback{
+    margin-top:20px; 
+    margin-bottom:30px;
+}
+
+.tableInfo{
+    height:80%;
+    width:80%;
+    margin:20px;
+    border-color:white;
+    margin-left:70px;
+}
+
+.state{
+    margin-left:100px;
+    margin-top:50px;
+}
+
+.boldHeader{ 
+}
+
+.feedbackblock{
+    border-color:#ce93d8;
+    border-style:solid;
+    border-width:1px;
+    border-radius:6px;
+}
+
+.feedbacktext{
+    margin:10px;
+}
+
+.images{
+    margin:20px;
+}
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);	
+
+
+
+#slider {
+  position: relative;
+  overflow: hidden;
+  margin: 20px auto 0 auto;
+  border-radius: 4px;
+  height:100%;
+}
+
+#slider ul {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  /*height: 200px;*/
+  height:100%;
+  list-style: none;
+}
+
+#slider ul li {
+  position: relative;
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+  width: 500px;
+  height: 300px;
+  background: #ccc;
+  text-align: center;
+  line-height: 300px;
+}
+
+a.control_prev, a.control_next {
+  position: absolute;
+  top: 40%;
+  z-index: 999;
+  display: block;
+  padding: 4% 3%;
+  width: auto;
+  height: auto;
+  background: #2a2a2a;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+a.control_prev:hover, a.control_next:hover {
+  opacity: 1;
+  -webkit-transition: all 0.2s ease;
+}
+
+a.control_prev {
+  border-radius: 0 2px 2px 0;
+}
+
+a.control_next {
+  right: 0;
+  border-radius: 2px 0 0 2px;
+}
+
+.slider_option {
+  position: relative;
+  margin: 10px auto;
+  width: 160px;
+  font-size: 18px;
+}

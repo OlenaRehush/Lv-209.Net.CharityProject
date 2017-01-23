@@ -1,0 +1,106 @@
+﻿<div class="main-container" ng-app="client_side" ng-controller="UpdateSocialWorkerController">
+    <div class="container margin8-bottom margin1-top" ng-show="prop.upload">
+        <form name="socWorkForm" class="form-horizontal" novalidate>
+            <div class="col-lg-12 charity-border">
+                <div class="row margin2-left margin2-right margin3-top">
+                    <div class="form-group">
+                        <label class="col-sm-8 control-label">Новий соціального працівник</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Повне ім'я <span class="errortext">*</span></label>
+                        <div class="col-sm-10">
+                            <input name="name" type="text" class="form-control" ng-maxlength="80" ng-model="Worker.Name" placeholder="Введіть повне ім'я або назву організації" required>
+                            <div ng-show="socWorkForm.name.$error.maxlength && NoValid" class="errortext margin1">Максимальна кількість символів 80</div>
+                            <div ng-show="socWorkForm.name.$error.required && prop.NoValid" class="errortext">Будь ласка, заповніть це поле</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Поштова скринька</label>
+                        <div class="col-sm-10">
+                            <input name="Email" type="email" ng-maxlength="80" class="form-control" ng-model="Worker.Email" placeholder="abs@example.com">
+                            <div ng-show="socWorkForm.Email.$error.email && prop.NoValid" class="errortext">Не правильний формат електронної скриньки</div>
+                            <div ng-show="socWorkForm.Email.$error.maxlength && NoValid" class="errortext margin1">Максимальна кількість символів 80</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Номер телефону <span class="errortext">*</span></label>
+                        <div class="col-sm-10">
+                            <input name="phone" type="text" class="form-control" ng-model="Worker.PhoneNumber" ng-minlength="8" ng-maxlength="12" placeholder="380XXXXXXXX" required>
+                            <div ng-show="socWorkForm.phone.$error.required && prop.NoValid" class="errortext">Будь ласка, заповніть це поле</div>
+                            <div ng-show="socWorkForm.phone.$error.minlength  && prop.NoValid" class="errortext">Номер телефону занадто короткий</div>
+                            <div ng-show="socWorkForm.phone.$error.maxlength  && prop.NoValid" class="errortext">Номер телефону занадто довгий, максимальна кількість 12 цифр</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Адреса <span class="errortext">*</span></label>
+                        <div class="col-sm-10">
+                            <input id="autocomplete" name="address" type="text" class="form-control ng-valid ng-dirty" ng-model="Worker.Address" placeholder="Введіть адресу" required>
+                            <div ng-show="socWorkForm.address.$error.required && prop.NoValid" class="errortext">Будь ласка, заповніть це поле</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Посилання на фото</label>
+                        <div class="col-sm-10">
+                            <input type="url" ng-model="Worker.ImageLink" placeholder="Введіть посилання" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Опис</label>
+                        <div class="col-sm-10">
+                            <textarea name="desc" class="form-control" ng-maxlength="400" rows="7" id="Description" ng-model="Worker.Description" placeholder="Коротко опишіть соціального працівника"></textarea>
+                            <div ng-show="socWorkForm.desc.$error.maxlength && NoValid" class="errortext margin1">Максимальна кількість символів 400</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <p class="col-sm-2 control-label"><b>Соціальні сфери <span class="errortext">*</span></b> (виберіть один або декілька користуючись гарячими клавішами)</p>
+                        <div class="col-sm-10">
+                            <select name="SphereSelect" size="19" multiple ng-minlength="1" class="form-control" ng-model="prop.spheres" required>
+                                <option value="1">Багатодітні сім'ї</option>
+                                <option value="2">Малозабезпечені сім'ї</option>
+                                <option value="3">Учасники Антитерористичної операції</option>
+                                <option value="4">Внутрішньо-переміщені особи</option>
+                                <option value="5">Прийомні сім'ї, Дитячі будинки сімейного типу</option>
+                                <option value="6">Особи, які постраждали від насильства в сім'ї та торгівлі людьми</option>
+                                <option value="7">Особи, які відбували покарання у вигляді обмеження волі або позбавлення волі на певний строк</option>
+                                <option value="8">Діти-сироти</option>
+                                <option value="9">Діти, позбавлені батьківського піклування</option>
+                                <option value="10">Особи з числа дітей-сиріт та дітей, позбавлених батьківського піклування</option>
+                                <option value="11">Пенсіонери</option>
+                                <option value="12">Одинокі непрацездатні громадяни</option>
+                                <option value="13">Інваліди</option>
+                                <option value="14">Ветерани війни та праці</option>
+                                <option value="15">Одинокі матері</option>
+                                <option value="16">Громадяни, які постраждали внаслідок Чорнобильської катастрофи</option>
+                                <option value="17">Бездомні особи</option>
+                                <option value="18">Біженці</option>
+                                <option value="19">Особи, які хворіють на рідкісні невиліковні захворювання</option>
+                            </select>
+                            <div ng-show=" prop.spheres.length == 0 && prop.NoValid" class="errortext">Будь ласка, виберіть один або декілька полів</div>
+                        </div>
+                    </div>
+                    <div class="row ld-center" ng-show="prop.inProgress">
+                        <div class="loader"></div>
+                    </div>
+                    <div class="form-group margin4-top margin4-bottom">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="form-inline">
+                                <span ng-click="prop.NoValid = true">
+                                    <input ng-if="!prop.isEdit" name="button" type="submit" ng-disabled="prop.inProgress" ng-click="socWorkForm.$valid && addWorker()" value="Добавити працівника" class="btn btn-success">
+                                    <input ng-if="prop.isEdit" name="button" type="submit" ng-disabled="prop.inProgress" ng-click="socWorkForm.$valid && updateWorker()" value="Внести зміни" class="btn btn-warning">
+                                </span>
+                                <span>
+                                    <input type="button" ng-disabled="prop.inProgress" ng-click="backToWorkerList()" value="Назад" class="btn btn-default margin3-left">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row ld-center-top" ng-show="!prop.upload">
+        <div class="loader"></div>
+    </div>
+</div>

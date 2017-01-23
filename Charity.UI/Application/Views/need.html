@@ -1,0 +1,149 @@
+﻿<link rel="stylesheet" type="text/css" href="Application/Styles/Company/company.css">
+<link href="Application/Styles/Needs/needs.css" rel="stylesheet" />
+<script src="../Scripts/needsHelper.js"></script>
+<script src="../Controllers/needController.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="jquery.cookie.js"></script>
+<script src="../Scripts/cookiesForNeeds.js"></script>
+
+<div ng-app="client_side" ng-controller="needController">
+    <div class="container">
+        <div class="row">
+        </div><br />
+        <div class="filter">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 region">
+                        <div>
+                            <label>Типи потреб:</label>
+                            <div class="checkbox typeneeds">
+                                <label for="ch1"><input type="checkbox" ng-checked="all" id="ch1" ng-true-value="'Матеріальні'" ng-false-value="" ng-model="search.Material">Матеріальні</label>
+                            </div>
+                            <div class="checkbox typeneeds">
+                                <label for="ch2"><input type="checkbox" ng-checked="all" id="ch1" ng-true-value="'Мрії'" ng-false-value="" ng-model="search.Dreams">Мрії</label>
+                            </div>
+                            <div class="checkbox typeneeds">
+                                <label for="ch3"><input type="checkbox" ng-checked="all" id="ch1" ng-true-value="'Волонтер'" ng-false-value="" ng-model="search.Voloteer">Волонтер</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 region">
+                        <div class="row">
+                            <label>Виберіть організацію:</label>
+                        </div>
+                        <div class="row">
+                            <select class="selectpicker form-control" ng-model="filterItem.store" ng-options="item.Name for item in filterOptions"></select>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <label>Статус потреби:</label>
+                        </div>
+                        <div class="row">
+                            <select class="selectpicker form-control" ng-model="stateItem" ng-options="item.name for item in stateOptions.stores"></select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 region">
+                        <div>
+                            <label>Пошук:</label>
+                            <input type="text" id="needsSearch" class="search text-info form-control" data-ng-model="table" placeholder="Введіть ключові слова...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <span class="label">Ordered By: {{orderByField}}, Reverse Sort: {{reverseSort}}</span><br><br>
+        <table class="table table-striped table-hover needsList">
+            <thead>
+                <tr class="needsTable">
+                    <th ng-click="sort('Name')">
+                        Потреба
+                        <span class="glyphicon glyphicon-sort" ng-show="sortKey!='Name'"></span>
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='Name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('Organization')">
+                        Потребуючі
+                        <span class="glyphicon glyphicon-sort" ng-show="sortKey!='Organization'"></span>
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='Organization'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('User')">
+                        Волонтер
+                        <span class="glyphicon glyphicon-sort" ng-show="sortKey!='User'"></span>
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='User'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('DateCreated')">
+                        Дата створення
+                        <span class="glyphicon glyphicon-sort" ng-show="sortKey!='DateCreated'"></span>
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='DateCreated'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('Status')">
+                        Status
+                        <span class="glyphicon glyphicon-sort" ng-show="sortKey!='Status'"></span>
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='Status'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('DateDateEnd')">
+                        Дата завершення
+                        <span class="glyphicon glyphicon-sort" ng-show="sortKey!='DateDateEnd'"></span>
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='DateDateEnd'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr dir-paginate="result in list|needType:search|filter: table|filter:customFilter|filter:stateFilter|orderBy:sortKey:reverse|itemsPerPage:5">
+                    <td  style="width:15%;"><a href="need/{{result.Id}}" >{{result.Name}}</a></td>
+                    <td  style="width:15%;"><a href="InfoPage/{{result.OrganizationId}}">{{result.Organization}}</a></td>
+                    <td  style="width:15%;"><a href="InfoPage/{{result.UserId}}">{{result.User}}</a></td>
+                    <td  style="width:15%;">{{result.DateCreated|date:'yyyy-MM-dd'}}</td>
+                    <td  style="width:10%;">{{result.Status}}</td>
+                    <td  style="width:10%;">{{result.DateEnd|date:'yyyy-MM-dd'}}</td>
+                    <td><input type="button" value="Виконати" class="btn btn-primary" ng-click="performneed(result)" ng-if="!AdminRole && (result.Status == 'Не виконано')" /> </td>
+                    <td><input type="button" value="Видалити" class="btn btn-primary" ng-click="openModal(result)" ng-if="AdminRole" /> </td>
+                    <td><input type="button" value="Редагувати" class="btn btn-primary" ng-click="shareMyData(result)" ng-if="AdminRole" /></td>
+                </tr>
+            </tbody>
+        </table>
+        <dir-pagination-controls max-size="5"
+                                 direction-links="true"
+                                 boundary-links="true">
+        </dir-pagination-controls>
+        <div class="row ld-center-top" ng-show="inProgress">
+            <div class="loader"></div>
+        </div>
+        <div>
+            <script type="text/ng-template" id="ModalNeeds.html">
+                <div class="modal-fade">
+                    <div class="modal-dialog-center">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title" style="color:black">Видалення потреби</h3>
+                            </div>
+                            <div class="modal-body">
+                                <p>Ви підтверджуєте видалення потреби : {{need.Name}} ?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-success" ng-click="ok(item.Id)" style="width: 120px;">
+                                    <i class="glyphicon glyphicon-ok"></i>
+                                    Підтвердити
+                                </button>
+                                <button class="btn btn-danger" ng-click="cancel()" style="width: 110px;">
+                                    <i class="glyphicon glyphicon-remove"></i>
+                                    Відмінити
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <style>
+                    .modal-dialog {
+                        position: initial;
+                    }
+                </style>
+            </script>
+        </div>
+    </div>
+    <br />
+</div>

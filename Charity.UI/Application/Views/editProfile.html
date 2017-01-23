@@ -1,0 +1,109 @@
+﻿
+<link href="Application/Styles/Profile/profile.css" rel="stylesheet" />
+
+<div class="container edit-profile margin5-top margin10-bottom" ng-show="prop.isReady">
+    <div class="row">
+        <div class="col-sm-11 col-sm-offset-1">
+            <div class="col-sm-4 margin1-top">
+                <div class="row margin5-bottom" ng-show="user.PhotoURL">
+                    <img ng-src="{{user.PhotoURL}}" class="profile-cover" />
+                </div>
+                <div class="row" ng-click="NoValid = true">
+                    <input type="button" value="Зберегти" ng-click="profileForm.$valid && update()" class="btn btn-default btn-block" />
+                </div>
+                <div class="row margin5-top">
+                    <input type="button" value="Скасувати" ng-click="cancel()" class="btn btn-default btn-block" />
+                </div>
+                <div class="row ld-center-top margin5-top" ng-show="prop.inProgress">
+                    <div class="loader"></div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-sm-offset-1">
+                <form name="profileForm" class="form-horizontal" novalidate>
+                    <div class="row">
+                        <label>
+                            Повне ім'я
+                            <input name="fullname" type="text" class="form-control" ng-model="user.FullName" ng-maxlength="80" placeholder="Будь ласка, введіть ваше ім'я та прізвище" required />
+                        </label>
+                        <div ng-show="profileForm.fullname.$error.required && NoValid" class="errortext margin1">Будь ласка, заповніть це поле</div>
+                        <div ng-show="profileForm.fullname.$error.maxlength && NoValid" class="errortext margin1">Максимальна кількість символів 80</div>
+                    </div>
+                    <div class="row">
+                        <label>
+                            Номер телефону
+                            <input name="PhoneNumber" type="text" class="form-control" ng-minlength="8" ng-maxlength="12" placeholder="380XXXXXXXX" ng-model="user.PhoneNumber" />
+                        </label>
+                        <div ng-show="profileForm.PhoneNumber.$error.minlength  && NoValid" class="errortext">Номер телефону занадто короткий</div>
+                        <div ng-show="profileForm.PhoneNumber.$error.maxlength  && NoValid" class="errortext">Номер телефону занадто довгий, максимальна кількість 12 цифр</div>
+                    </div>
+                    <div class="row">
+                        <label>
+                            Дата народження
+                            <div class='input-group date' id='datetimepicker1'>
+                                <input type='text' class="form-control" id="DateOfBirth" ng-model="user.Birthday.Day + '/' + user.Birthday.Month + '/' + user.Birthday.Year" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </label>
+                        <script type="text/javascript">
+                            $(function () {
+                                $('#datetimepicker1').datetimepicker({
+                                    format: 'DD/MM/YYYY'
+                                });
+                            });
+                        </script>
+                    </div>
+                    <div class="row">
+                        <label>
+                            Сайт
+                            <input name="site" type="url" class="form-control" ng-maxlength="80" placeholder="http://www.example.com" ng-model="user.WebSite" />
+                        </label>
+                        <div ng-show="profileForm.site.$error.url && NoValid" class="errortext">Неправильний формат сайту</div>
+                        <div ng-show="profileForm.site.$error.maxlength && NoValid" class="errortext margin1">Максимальна кількість символів 80</div>
+                    </div>
+                    <div class="row">
+                        <label>
+                            Фото
+                            <input type="text" class="form-control" ng-model="user.PhotoURL"/>
+                        </label>
+                    </div>
+                    <div class="row">
+                        <label>
+                            <div class='input-group'>
+                                <input ng-model="form.image" type="file" class="form-control" accept="image/*" onchange="FileGetter(this)">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-arrow-down"></span>
+                                </span>
+                            </div>
+                        </label>
+                        <script type="text/javascript">
+                            var Files = [];
+                            function FileGetter(element) {
+                                Files[0] = element.files[0];
+                            }
+                        </script>
+                        <div class="errortext" style="text-align:center;">Не більше 2 мегабайт</div>  
+                        <input type="submit" accept=".bmp,.jpg,.jpeg,.gif,.png" id="submit" value="Завантажити" class="btn btn-default btn-block" ng-click="uploadImage()"/>
+                        <img ng-src="{{image_source}}" class="row margin5-bottom" style="width:300px;display:block;margin:auto;width:40%;margin:10px auto auto auto;">
+                    </div>
+                    <div class="row">
+                        <label>
+                            Опис
+                            <textarea name="desc" cols="10" rows="7" class="form-control" ng-maxlength="400" ng-model="user.Description" placeholder="Будь ласка опишіть вас, та(або) чим ви можете допомогти"></textarea>
+                        </label>
+                        <div ng-show="profileForm.desc.$error.maxlength && NoValid" class="errortext margin1">Максимальна кількість символів 400</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row ld-center-top" ng-show="!prop.isReady">
+    <div ng-if="prop.error">
+        <h4 class="errortext">Помилка завантаження даних</h4>
+        <p>{{prop.message}}</p>
+    </div>
+    <div class="loader"></div>
+</div>

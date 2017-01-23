@@ -1,0 +1,65 @@
+﻿.metrostyle {
+    height: 150px;
+    width: 250px;
+    float: left;
+    /*border: 1px solid grey;*/
+    color: white;
+    background-color: #a04097;
+    transition: 0s;
+    border-radius: 15px;
+}
+
+    .metrostyle:hover {
+        background-color: white;
+        border: 1px solid grey;
+        color: black;
+        transition: 0s;
+    }
+
+        .metrostyle:hover::before {
+            content: url(../../../Resources/images/companies2.png);
+            height: 60px;
+            width: 80px;
+            position: absolute;
+            left: -15px;
+            right: 0;
+            top: 25px;
+            margin: 0 auto;
+            display: block;
+            color: black;
+            z-index: 999;
+            transition: 0s;
+        }
+
+a, a:hover {
+    text-decoration: none;
+    color: white;
+    transition: 0s;
+}
+
+.itemHeader {
+    font-size: 1.6em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 100px;
+}
+
+    .itemHeader:before {
+        content: url(../../../Resources/images/companies.png);
+        height: 60px;
+        width: 80px;
+        position: absolute;
+        left: -15px;
+        right: 0;
+        top: 25px;
+        margin: 0 auto;
+        display: block;
+        background-repeat: no-repeat;
+        background-position: center;
+        transition: 0s;
+    }
+
+.format {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}

@@ -1,0 +1,34 @@
+﻿<link href="Application/Styles/History/history.css" rel="stylesheet" />
+<script src="Application/Scripts/historiLocalStorage.js"></script>
+<div ng-app="client_side" ng-controller="historyController">
+    <div class="row">
+        <div class="container">
+            <div class="searchText">
+                <label>Пошук:</label>
+                <input type="text" id="historySearch" class="search" data-ng-model="table" />
+            </div>
+        </div>
+    </div>
+    <div class="container historyList">
+        <table class="table table-striped">
+            <thead>
+                <tr class="historyTable">
+                    <th>Початок</th>
+                    <th>Завершення</th>
+                    <th>Потреба</th>
+                    <th>Потребуючі</th>
+                    <th>Волонтер</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="result in list|filter:{ Status: 'Виконано'}:true|filter:table">
+                    <td>{{result.DateCreated|date:'yyyy-MM-dd'}}</td>
+                    <td>{{result.DateEnd|date:'yyyy-MM-dd'}}</td>
+                    <td><a href="need/{{result.Id}}">{{result.Name}}</a></td>
+                    <td><a href="#">{{result.Organization}}</a></td>
+                    <td><a href="#">{{result.User}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

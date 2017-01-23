@@ -1,0 +1,88 @@
+﻿<link href="Application/Styles/AuthenticationStyle.css" rel="stylesheet" />
+<link href="Content/font-awesome.min.css" rel="stylesheet" />
+
+<div class="row margin7-top margin5-bottom">
+    <div class="col-lg-12">
+        <div class="col-lg-4 col-lg-offset-4 text-center">
+            <form name="loginForm" class="auth-form form-horizontal" ng-hide="show_message" novalidate>
+                <div class="row margin5-bottom">
+                    <h2>Вхід</h2>
+                </div>
+                <div class="row errortext margin4-bottom" ng-show="responseData != ''">
+                    {{responseData}}
+                </div>
+                <div class="row">
+                    <input type="email" name="Email" ng-maxlength="80" placeholder="Адреса електронної пошти" ng-model="loginData.userName" required />
+                    <div ng-show="loginForm.Email.$error.required && NoValid" class="errortext">Будь ласка, заповніть це поле</div>
+                    <div ng-show="(loginForm.Email.$error.email && NoValid) || forceError" class="errortext">Ім'я користувача або пароль введені неправильно</div>
+                    <div ng-show="loginForm.Email.$error.maxlength && NoValid" class="errortext margin1">Максимальна кількість символів 80</div>
+                </div>
+                <div class="row">
+                    <input type="password" name="Password" ng-minlength="6" ng-maxlength="16" placeholder="Пароль" ng-model="loginData.password" required />
+                    <div ng-show="loginForm.Password.$error.required  && NoValid" class="errortext">Будь ласка, заповніть це поле</div>
+                    <div ng-show="loginForm.$error.minlength  && NoValid" class="errortext">Пароль занадто короткий</div>
+                    <div ng-show="loginForm.Password.$error.maxlength && NoValid" class="errortext margin1">Максимальна кількість символів 16</div>
+                </div>
+                <div class="row" ng-click="NoValid = true">
+                    <input type="submit" name="Submit" value="Увійти" ng-click="loginForm.$valid && login()" ng-disabled="inProgress" />
+                </div>
+                <div class="row ld-center" ng-show="inProgress">
+                    <div class="loader"></div>
+                </div>
+                <div class="row margin7-top">
+                    Забули пароль? <a href="forgot_password">Відновити пароль!</a>
+                </div>
+                <div class="row">
+                    Немає облікового запису? <a href="registration">Створіть його!</a>
+                </div>
+            </form>
+
+            <div class="success-msg" ng-show="show_message">
+                <h2 class="margin5 fail-color">Помилка автентифікації</h2>
+                <p>{{message}}</p>
+                <br />
+                <br />
+                <div ng-if="allowReconfrimEmail">
+                    <form name="reConfirmForm" class="auth-form form-horizontal" novalidate>
+                        <h5>Ви можете надіслати повторне повідомлення про підтвердження реєстрації</h5>
+                        <div class="row">
+                            <input type="email" name="Email" ng-maxlength="80" placeholder="Адреса електронної пошти" ng-model="loginData.userName" required />
+                            <div ng-show="reConfirmForm.Email.$error.required && NoValid" class="errortext">Будь ласка, заповніть це поле</div>
+                            <div ng-show="reConfirmForm.Email.$error.email && NoValid" class="errortext">Будь ласка, введіть правильний адрес електронної пошти</div>
+                            <div ng-show="reConfirmForm.Email.$error.maxlength && NoValid" class="errortext margin1">Максимальна кількість символів 80</div>
+                        </div>
+                        <div class="row" ng-click="NoValid = true">
+                            <input type="submit" name="Submit" value="Надіслати підтвердження повторно" ng-click="reConfirmForm.$valid && recomfirmEmail()" ng-disabled="inProgress" />
+                        </div>
+                        <div class="row ld-center" ng-show="inProgress">
+                            <div class="loader"></div>
+                        </div>
+                    </form>
+                </div>
+                <p class="text-right" ng-click="reload()"><a href="">Назад</a></p>
+            </div>
+       
+            <!--Start Sdk
+            <div id="status"> </div>
+           -->
+           
+            <!--End SDK-->
+            <div class="row" ng-hide="show_message" ng-controller="ExternalloginController">
+                <div class="col-lg-6 col-centered externalLogin-block padding1-top">
+                    <a class="btn btn-block btn-social btn-facebook" ng-click="loginFacebook()">
+                        <span class="fa fa-facebook"></span><b>Увійти за допомогою Facebook</b>
+                    </a>
+                </div>
+                <!--За допомогою Google-->
+             
+                <div class="col-lg-6 col-centered externalLogin-block padding1-top">
+                    <a class="btn btn-block btn-social btn-google" id="btnGoogleLogin">
+                        <span class="fa fa-google"></span><b>Увійти за допомогою Google</b>
+                    </a>
+                </div>
+              
+            </div>
+        </div>
+    </div>
+</div>
+        

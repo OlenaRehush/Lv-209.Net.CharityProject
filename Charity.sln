@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Charity.DAL", "Charity.DAL\Charity.DAL.csproj", "{0468443A-342C-42FE-A6DD-B4906676EAC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Charity.Services", "Charity.Services\Charity.Services.csproj", "{0C884192-D6DD-4F95-B6B2-2F573D0D2D81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Charity.UI", "Charity.UI\Charity.UI.csproj", "{0B77B1C4-01A9-4D22-AEF0-5C300C8297FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Charity.Common", "Charity.Common\Charity.Common.csproj", "{41CC22BE-DC76-48B9-8DE7-A9676EB6B2B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Charity.Tests", "Charity.Tests\Charity.Tests.csproj", "{E296ABB4-931D-4E9F-9A9B-A5E51D327547}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0468443A-342C-42FE-A6DD-B4906676EAC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0468443A-342C-42FE-A6DD-B4906676EAC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0468443A-342C-42FE-A6DD-B4906676EAC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0468443A-342C-42FE-A6DD-B4906676EAC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C884192-D6DD-4F95-B6B2-2F573D0D2D81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C884192-D6DD-4F95-B6B2-2F573D0D2D81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C884192-D6DD-4F95-B6B2-2F573D0D2D81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C884192-D6DD-4F95-B6B2-2F573D0D2D81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B77B1C4-01A9-4D22-AEF0-5C300C8297FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B77B1C4-01A9-4D22-AEF0-5C300C8297FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B77B1C4-01A9-4D22-AEF0-5C300C8297FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B77B1C4-01A9-4D22-AEF0-5C300C8297FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41CC22BE-DC76-48B9-8DE7-A9676EB6B2B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41CC22BE-DC76-48B9-8DE7-A9676EB6B2B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41CC22BE-DC76-48B9-8DE7-A9676EB6B2B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41CC22BE-DC76-48B9-8DE7-A9676EB6B2B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E296ABB4-931D-4E9F-9A9B-A5E51D327547}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E296ABB4-931D-4E9F-9A9B-A5E51D327547}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E296ABB4-931D-4E9F-9A9B-A5E51D327547}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E296ABB4-931D-4E9F-9A9B-A5E51D327547}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfs12:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Charity.DAL\\Charity.DAL.csproj
+		SccProjectName1 = Charity.DAL
+		SccLocalPath1 = Charity.DAL
+		SccProjectUniqueName2 = Charity.Services\\Charity.Services.csproj
+		SccProjectName2 = Charity.Services
+		SccLocalPath2 = Charity.Services
+		SccProjectUniqueName3 = Charity.UI\\Charity.UI.csproj
+		SccProjectName3 = Charity.UI
+		SccLocalPath3 = Charity.UI
+		SccProjectUniqueName4 = Charity.Common\\Charity.Common.csproj
+		SccProjectName4 = Charity.Common
+		SccLocalPath4 = Charity.Common
+		SccProjectUniqueName5 = Charity.Tests\\Charity.Tests.csproj
+		SccProjectName5 = Charity.Tests
+		SccLocalPath5 = Charity.Tests
+	EndGlobalSection
+EndGlobal

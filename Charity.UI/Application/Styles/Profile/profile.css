@@ -1,0 +1,98 @@
+﻿.edit-profile
+input{
+    width:100%;
+}
+.edit-profile
+input[type=number]
+{
+    width:90px;
+}
+.edit-profile
+label{
+    width:100%;
+}
+
+img{
+    width: 100%;
+    height: auto;
+}
+
+#profile
+.add-recource
+input[type=text],
+#profile
+.add-recource
+textarea,
+#profile
+.add-recource
+select,
+#profile
+.add-recource
+input[type=datetime]{
+    width: 80%;
+}
+
+#profile
+.border-bottom{
+    border-bottom:1px solid #a04097;
+}
+#profile
+.border-top{
+    border-top:1px solid #a04097;
+}
+
+#profile
+.add-recource:hover{
+    color: black;
+}
+
+#profile
+.resource-row{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    color: black;
+    cursor: pointer;
+}
+
+#profile
+.resource-row:hover{
+    background-color: #eeeeee;
+    color: black;
+}
+
+#RequestList
+a{
+    text-decoration:none;
+    cursor:pointer;
+}
+
+#RequestList
+a:hover{
+    color: #A04097;
+}
+
+#RequestList
+.focused{
+    border-bottom:1px solid #a04097;
+}
+
+#RequestList
+img{
+    padding: 10%;
+}
+
+#RequestList
+.choose
+a{
+    color: #FF9494;
+}
+
+#RequestList
+.choose
+a:hover{
+    color: #91E58C;
+}
+
+.gray-border{
+    border-bottom: 1px solid #eeeeee;
+}

@@ -1,0 +1,327 @@
+﻿.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+
+/* MARGIN AND PADDING EXTENSION*/
+
+.margin0{
+    margin: 0%; 
+}
+.margin1{
+    margin: 1%; 
+}
+.margin2{
+    margin: 2%; 
+}
+.margin3{
+    margin: 3%; 
+}
+.margin4{
+    margin: 4%; 
+}
+.margin5{
+    margin: 5%; 
+}
+.margin10{
+    margin: 10%; 
+}
+.margin15{
+    margin: 15%; 
+}
+.margin20{
+    margin: 20%; 
+}
+
+.margin1-left{
+    margin-left: 1%; 
+}
+.margin2-left{
+    margin-left: 2%; 
+}
+.margin3-left{
+    margin-left: 3%; 
+}
+.margin4-left{
+    margin-left: 4%; 
+}
+.margin5-left{
+    margin-left: 5%; 
+}
+.margin10-left{
+    margin-left: 10%; 
+}
+.margin15-left{
+    margin-left: 15%; 
+}
+.margin20-left{
+    margin-left: 20%; 
+}
+
+.margin1-right{
+    margin-right: 1%; 
+}
+.margin2-right{
+    margin-right: 2%; 
+}
+.margin3-right{
+    margin-right: 3%; 
+}
+.margin4-right{
+    margin-right: 4%; 
+}
+.margin5-right{
+    margin-right: 5%; 
+}
+.margin10-right{
+    margin-right: 10%; 
+}
+.margin15-right{
+    margin-right: 15%; 
+}
+.margin20-right{
+    margin-right: 20%; 
+}
+
+.margin1-top{
+    margin-top: 1%; 
+}
+.margin2-top{
+    margin-top: 2%; 
+}
+.margin3-top{
+    margin-top: 3%; 
+}
+.margin4-top{
+    margin-top: 4%; 
+}
+.margin5-top{
+    margin-top: 5%; 
+}
+.margin6-top {
+    margin-top: 6%;
+}
+.margin7-top {
+    margin-top: 7%;
+}
+.margin8-top {
+    margin-top: 8%;
+}
+.margin9-top {
+    margin-top: 9%;
+}
+.margin10-top{
+    margin-top: 10%; 
+}
+.margin15-top{
+    margin-top: 15%; 
+}
+.margin20-top{
+    margin-top: 20%; 
+}
+
+.margin1-bottom{
+    margin-bottom: 1%; 
+}
+.margin2-bottom{
+    margin-bottom: 2%; 
+}
+.margin3-bottom{
+    margin-bottom: 3%; 
+}
+.margin4-bottom{
+    margin-bottom: 4%; 
+}
+.margin5-bottom{
+    margin-bottom: 5%; 
+}
+.margin6-bottom {
+    margin-bottom: 6%;
+}
+.margin7-bottom {
+    margin-bottom: 7%;
+}
+.margin8-bottom {
+    margin-bottom: 8%;
+}
+.margin9-bottom {
+    margin-bottom: 9%;
+}
+.margin10-bottom{
+    margin-bottom: 10%; 
+}
+.margin15-bottom{
+    margin-bottom: 15%; 
+}
+.margin20-bottom{
+    margin-bottom: 20%; 
+}
+
+.padding0{
+    padding: 0%;
+}
+.padding1{
+    padding: 1%; 
+}
+.padding2{
+    padding: 2%; 
+}
+.padding3{
+    padding: 3%; 
+}
+.padding4{
+    padding: 4%; 
+}
+.padding5{
+    padding: 5%; 
+}
+.padding10{
+    padding: 10%; 
+}
+.padding15{
+    padding: 15%; 
+}
+.padding20{
+    padding: 20%; 
+}
+
+.padding0-left{
+    padding-left: 0%; 
+}
+.padding1-left{
+    padding-left: 1%; 
+}
+.padding2-left{
+    padding-left: 2%; 
+}
+.padding3-left{
+    padding-left: 3%; 
+}
+.padding4-left{
+    padding-left: 4%; 
+}
+.padding5-left{
+    padding-left: 5%; 
+}
+.padding10-left{
+    padding-left: 10%; 
+}
+.padding15-left{
+    padding-left: 15%; 
+}
+.padding20-left{
+    padding-left: 20%; 
+}
+
+.padding0-right{
+    padding-right: 0%; 
+}
+.padding1-right{
+    padding-right: 1%; 
+}
+.padding2-right{
+    padding-right: 2%; 
+}
+.padding3-right{
+    padding-right: 3%; 
+}
+.padding4-right{
+    padding-right: 4%; 
+}
+.padding5-right{
+    padding-right: 5%; 
+}
+.padding10-right{
+    padding-right: 10%; 
+}
+.padding15-right{
+    padding-right: 15%; 
+}
+.padding20-right{
+    padding-right: 20%; 
+}
+
+.padding0-top{
+    padding-top: 0%; 
+}
+.padding1-top{
+    padding-top: 1%; 
+}
+.padding2-top{
+    padding-top: 2%; 
+}
+.padding3-top{
+    padding-top: 3%; 
+}
+.padding4-top{
+    padding-top: 4%; 
+}
+.padding5-top{
+    padding-top: 5%; 
+}
+.padding10-top{
+    padding-top: 10%; 
+}
+.padding15-top{
+    padding-top: 15%; 
+}
+.padding20-top{
+    padding-top: 20%; 
+}
+
+.padding0-bottom{
+    padding-bottom: 0%; 
+}
+.padding1-bottom{
+    padding-bottom: 1%; 
+}
+.padding2-bottom{
+    padding-bottom: 2%; 
+}
+.padding3-bottom{
+    padding-bottom: 3%; 
+}
+.padding4-bottom{
+    padding-bottom: 4%; 
+}
+.padding5-bottom{
+    padding-bottom: 5%; 
+}
+.padding10-bottom{
+    padding-bottom: 10%; 
+}
+.padding15-bottom{
+    padding-bottom: 15%; 
+}
+.padding20-bottom{
+    padding-bottom: 20%; 
+}
+
+.opacity1 {
+    opacity: 0.1;
+}
+.opacity2 {
+    opacity: 0.2;
+}
+.opacity3 {
+    opacity: 0.3;
+}
+.opacity4 {
+    opacity: 0.4;
+}
+.opacity5 {
+    opacity: 0.5;
+}
+.opacity6 {
+    opacity: 0.6;
+}
+.opacity7 {
+    opacity: 0.7;
+}
+.opacity8 {
+    opacity: 0.8;
+}
+.opacity9 {
+    opacity: 0.9;
+}

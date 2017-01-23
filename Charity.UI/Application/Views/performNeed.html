@@ -1,0 +1,65 @@
+﻿<div class="container">
+    <div class="row" ng-show="loadedInfo">
+        <div class="col-sm-offset-2 col-sm-8">
+            <div class="row margin2-top charity-border">
+                <div class="col-sm-8 margin5-left">
+                    <div class="row margin2">
+                        <h3>"{{Need.Name}}"</h3>
+                        <p><b>Опис: </b>{{Need.Description}}</p>
+                    </div>
+                    <div class="row margin1-top margin2">
+                        <p>Організація: <b> {{Need.Organization}}</b></p>
+                        <p>Дата створення: <b>{{Need.DateCreated|date:"dd.MM.yyyy"}}</b></p>
+                        <p>Тип потреби: <b>{{Need.TypeOfNeed.Type || Need.TypeOfNeed}}</b></p>
+                    </div>
+                </div>
+                <div class="col-sm-3 margin5-top">
+                    <img ng-src="{{Need.ImageLink}}" />
+                </div>
+            </div>
+            <div class="row margin1-top">
+                <div class="col-sm-12 charity-border">
+                    <form name="requestForm" class="form-horizontal margin3" novalidate>
+                        <div class="row margin2-top">
+                            <label>
+                                Номер телефону <b class="errortext">*</b>
+                            </label>
+                            <input name="PhoneNumber" type="text" class="form-control" ng-minlength="8" ng-maxlength="12" placeholder="380XXXXXXXX" ng-model="Request.Phone" />
+
+                            <div ng-show="requestForm.PhoneNumber.$error.minlength  && NoValid" class="errortext">Номер телефону занадто короткий</div>
+                            <div ng-show="requestForm.PhoneNumber.$error.maxlength  && NoValid" class="errortext">Номер телефону занадто довгий, максимальна кількість цифр 12</div>
+                        </div>
+                        <div class="row margin2-top">
+                            <label>
+                                Повідомлення  <b class="errortext">*</b>
+                            </label>
+                            <textarea name="Description"rows="3" class="form-control" ng-model="Request.Description" ng-maxlength="400" placeholder="Напишіть повідомлення організації"></textarea>
+                            <p ng-show="requestForm.Description.$error.required  && NoValid" class="errortext">Заповніть, будь ласка, це поле </p>
+                            <p ng-show="requestForm.Description.$error.minlength  && NoValid" class="errortext">Введіть, будь ласка, більше інформацї</p>
+                            <p ng-show="requestForm.Description.$error.maxlength  && NoValid" class="errortext">Максимальна кількість символів 400</p>
+                        </div>
+                        <div class="row margin2-top">
+                            <label>Залишитись анонімом?</label>
+                            <input type="checkbox" ng-model="Request.IsAnonymous" ng-true-value="true" ng-false-value="false">
+                        </div>
+                        <div class="margin2-top form-inline">
+                            <span ng-click="NoValid = true">
+                                <input name="submit" ng-click="requestForm.$valid && sendNeedRequest()" type="submit" value="Надіслати запит" class="btn btn-success">
+                            </span>
+                            <span>
+                                <input type="button" value="Повернутись назад" class="margin2-left btn btn-warning" ng-click="backToNeedsList()">
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row ld-center" ng-show="prop.inProgress">
+                <div class="loader"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row ld-center-top" ng-show="!loadedInfo">
+        <div class="loader"></div>
+    </div>
+</div>
+

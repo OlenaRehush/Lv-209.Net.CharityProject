@@ -1,0 +1,130 @@
+﻿<link href="Application/Styles/Company/addCompany.css" rel="stylesheet" />
+
+<form name="userForm" class="container addCompany" novalidate>
+    <div class="row">
+        <h4 class="errortext text-center" ng-show="message != ''">{{message}}</h4>
+    </div>
+    <div class="col-md-9 col-md-offset-2">
+        <div class="form-group">
+            <label for="fullname">Назва<b class="errortext">*</b></label>
+            <input name="fullname" ng-model="Registration.FullName" ng-maxlength="80" type="text" class="form-control" required>
+            <div ng-show="userForm.fullname.$error.required && NoValid" class="errortext margin1">Будь ласка, заповніть це поле</div>
+            <div ng-show="userForm.fullname.$error.maxlength  && NoValid" class="errortext">Максимальна кількість символів 80</div>
+            <div > </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="fullname">Виберіть тип <b class="errortext">*</b></label>
+                </div>
+                <div class="col-md-6">
+                    <label for="Email">Електронна скринька <b class="errortext">*</b></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <select name="typeRole" ng-model="Registration.RoleName" class="form-control" required>
+                        <option value="Organization">Організація</option>
+                        <option value="Company" selected>Компанія</option>
+                    </select>
+                    <div ng-show="userForm.typeRole.$error.required && NoValid" class="errortext margin1">Ви не вибрали жодного значення</div>
+                </div>
+                <div class="col-md-6">
+                    <input name="Email" ng-model="Registration.Email" ng-maxlength="80" type="email" class="form-control" required>
+                    <div ng-show="userForm.Email.$error.required && NoValid" class="errortext margin1">Будь ласка, заповніть це поле</div>
+                    <div ng-show="userForm.Email.$error.email && NoValid" class="errortext margin1">Будь ласка, введіть правильний адрес електронної пошти</div>
+                    <div ng-show="userForm.Email.$error.maxlength  && NoValid" class="errortext">Максимальна кількість символів 80</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">              
+                <div class="col-md-6">
+                    <label for="Password">Пароль <b class="errortext">*</b></label>
+                </div>
+                <div class="col-md-6">
+                    <label for="ConfirmPassword">Підтвердження пароля <b class="errortext">*</b></label>
+                </div>
+            </div>
+            <div class="row">                
+                <div class="col-md-6">
+                    <input name="Password" ng-minlength="6" ng-maxlength="16" ng-model="Registration.Password" type="password" class="form-control" required>
+                    <div ng-show="userForm.Password.$error.required  && NoValid" class="errortext">Будь ласка, заповніть це поле</div>
+                    <div ng-show="userForm.Password.$error.minlength  && NoValid" class="errortext">Пароль занадто короткий</div>
+                    <div ng-show="userForm.Password.$error.maxlength  && NoValid" class="errortext">Максимальна кількість символів 16</div>
+                </div>
+                <div class="col-md-6">
+                    <input name="ConfirmPassword" ng-minlength="6" ng-maxlength="16" ng-model="Registration.ConfirmPassword" type="password" class="form-control" required>
+                    <div ng-show="userForm.ConfirmPassword.$error.required  && NoValid" class="errortext">Будь ласка, заповніть це поле</div>
+                    <div ng-show="userForm.ConfirmPassword.$error.minlength  && NoValid" class="errortext">Пароль занадто короткий</div>
+                    <div ng-show="userForm.ConfirmPassword.$viewValue != userForm.Password.$viewValue && NoValid" class="errortext">Паролі не співпадають</div>
+                    <div ng-show="userForm.ConfirmPassword.$error.maxlength  && NoValid" class="errortext">Максимальна кількість символів 16</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="Address">Адреса <b class="errortext">*</b></label>
+                </div>
+                <div class="col-md-6">
+                    <label for="Birthday">Рік заснування</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <input name="Address" id="autocomplete" ng-model="Registration.Address" placeholder="Введіть вашу адресу" type="text" class="form-control ng-valid ng-dirty" required>
+                    <div ng-show="userForm.Address.$error.required  && NoValid" class="errortext">Будь ласка, заповніть це поле</div>
+                </div>
+                <div class="col-md-6">
+                    <div class='input-group date' id='datetimepicker1'>
+                        <input type='text' name="Birthday" class="form-control" id="DateOfBirth" ng-model="Registration.Birthday"/>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        <script type="text/javascript">
+                            $(function () {
+                                $('#datetimepicker1').datetimepicker({
+                                    format: 'DD/MM/YYYY'
+                                });
+                            });
+                        </script>
+                    </div>
+                </div><div ng-show="userForm.Birthday.$error.required  && NoValid" class="errortext">Ви повинні вибрати дату</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="PhoneNumber">Контактний номер телефону <b class="errortext">*</b></label>
+                </div>
+                <div class="col-md-6">
+                    <label for="site">Сайт</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="text" name="PhoneNumber" ng-model="Registration.PhoneNumber" ng-minlength="8" ng-maxlength="12" class="form-control" placeholder="380XXXXXXXX" required>
+                    <div ng-show="userForm.PhoneNumber.$error.required  && NoValid" class="errortext">Будь ласка, заповніть це поле</div>
+                    <div ng-show="userForm.PhoneNumber.$error.minlength  && NoValid" class="errortext">Номер телефону занадто короткий</div>
+                    <div ng-show="userForm.PhoneNumber.$error.maxlength  && NoValid" class="errortext">Номер телефону занадто довгий, максимальна кількість цифр 12</div>
+                </div>
+                <div class="col-md-6">
+                    <input name="site" type="url" ng-model="Registration.Website" class="form-control" ng-maxlength="80" placeholder="http://">
+                    <div ng-show="userForm.site.$error.url && NoValid" class="errortext">Не правильний формат сайту</div>
+                    <div ng-show="userForm.site.$error.maxlength  && NoValid" class="errortext">Максимальна кількість символів 80</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description">Опис</label>
+            <textarea  name="desc" class="form-control" ng-model="Registration.Description" rows="7" placeholder="Опис компанії, чим займається, та чим може допомогти"></textarea>
+            <div ng-show="userForm.desc.$error.maxlength  && NoValid" class="errortext">Максимальна кількість символів 400</div>
+        </div>
+        <div class="form-group" ng-click="NoValid = true">
+            <input type="submit" value="Зареєструвати" class="btn btn-primary" ng-click="userForm.$valid && registerNewUser()" ng-disabled="inProgress" />
+            <input type="button" value="Скасувати" class="btn btn-primary" ng-click="cancel()" />
+        </div>
+    </div>
+    <div class="row ld-center" ng-show="inProgress">
+        <div class="loader"></div>
+    </div>
+</form>

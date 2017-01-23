@@ -1,0 +1,132 @@
+﻿<link href="Application/Styles/Company/InfoPageStyle.css" rel="stylesheet" />
+
+<div id="infoPage" class="container margin1-top" ng-show="!params.inProgress">
+    <div class="col-sm-12">
+        <div class="row padding3 profile-cover">
+            <div class="col-sm-7">
+                <div class="row" ng-show="user.FullName">
+                    <h3 ng-show="prop.isComp">{{user.FullName}}</h3>
+                    <h3 ng-show="prop.isOrg"><span class="glyphicon glyphicon-heart-empty errortext"></span> {{user.FullName}}</h3>
+                    <h3 ng-show="prop.isUser || prop.isAdmin">{{user.FullName}}</h3>
+                </div>
+                <div class="row" ng-show="user.Address">
+                    <h5><span class="glyphicon glyphicon-map-marker ch-color"></span> {{user.Address}}</h5>
+                </div>
+                <div class="row" ng-show="user.PhoneNumber">
+                    <h5><span class="glyphicon glyphicon-earphone ch-color"></span> {{user.PhoneNumber}}</h5>
+                </div>
+                <div class="row" ng-show="user.Email">
+                    <h5><span class="glyphicon glyphicon-envelope ch-color"></span> {{user.Email}}</h5>
+                </div>
+                <div class="row" ng-show="user.WebSite">
+                    <h5><span class="glyphicon glyphicon-share-alt ch-color"></span> {{user.WebSite}}</h5>
+                </div>
+                <div class="row" ng-show="user.Birthday">
+                    <h5><span class="glyphicon glyphicon-time ch-color"></span> {{user.Birthday|date: dd.MM.yyyy}}</h5>
+                </div>
+                <div class="row" ng-show="user.Description">
+                    <h5><span class="glyphicon glyphicon-comment ch-color"></span> {{user.Description}}</h5>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="row text-center">
+                    <img ng-src="{{user.PhotoURL}}" />
+                </div>
+            </div>           
+        </div>        
+        <div class="row padding1 profile-cover margin1-top margin10-bottom" ng-if="(user.Needs.length > 0) || (user.Company.Resources.length > 0) || (user.NeedRequests.length > 0)">
+            
+            <!-- Organization -->
+            <div ng-if="user.Organization">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="col-lg-6">
+                            <h4>
+                                Список потреб організації
+                            </h4>
+                        </div>
+                        <div class="col-lg-6">
+                            <select class="selectpicker form-control" ng-model="prop.stateItem" ng-options="item.name for item in stateOptions.stores"></select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                    </div>
+                </div>
+                <br />
+                <div ng-repeat="model in list|filter:stateFilter">
+                    <div class="col-sm-12 margin1-bottom margin1-top">
+                        <div class="col-sm-4">
+                            <b>{{model.Name}}</b>
+                            <p>{{model.Description}}</p>
+                        </div>
+                        <div class="col-sm-3">
+                            <p ng-if="!model.DateEnd">Від {{model.DateCreated|date:"MM.dd.yyyy"}}</p>
+                            <p ng-if="model.DateEnd">Від {{model.DateCreated|date:"MM.dd.yyyy"}} по {{model.DateEnd|date:"MM.dd.yyyy"}}</p>
+                            <p>Тип: <b>{{model.TypeOfNeed.Type}}</b></p>
+                        </div>
+                        <div class="col-sm-2">
+                            <p ng-if="model.State == 0" class="text-info"><b>Не виконано</b></p>
+                            <p ng-if="model.State == 1" class="text-success"><b>Виконано</b></p>
+                            <p ng-if="model.State == 2" class="text-danger"><b>Відмінено</b></p>
+                            <p ng-if="model.State == 3" class="text-primary"><b>В процесі</b></p>
+                            <input type="button" value="Виконати" class="btn btn-success" ng-click="perform(model)" ng-if="model.State == 0" />
+                        </div>
+                        <div class="col-sm-1">
+                            <p><a href="" ng-click="Redirect.Need(model.Id)" class="ch-color ch-color-hover">Деталі</a></p>
+                        </div>
+                        <div class="col-sm-2 text-center">
+                            <img ng-src="{{model.ImageLink}}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Company -->
+            <div ng-if="user.Company">
+                <h4>
+                    Список послуг компанії
+                </h4>
+                <div ng-repeat="model in user.Company.Resources">
+                    <div class="col-sm-12 margin1-bottom">
+                        <div class="col-sm-3 text-center">
+                            <img ng-src="{{model.ImageLink}}" />
+                        </div>
+                        <div class="col-sm-9">
+                            <b>{{model.Name}}</b>
+                            <p>{{model.Description}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- User -->
+            <div ng-if="!prop.isComp && !prop.isOrg">
+                <h4>
+                    Виконані потреби волонтером
+                </h4>
+                <div ng-repeat="model in user.NeedRequests">
+                    <a class="col-sm-12 padding1-top resource-row" ng-click="Redirect.Need(model.Need.Id)">
+                        <div class="col-sm-3">
+                            <p>{{model.Need.Name}}</p>
+                        </div>
+                        <div class="col-sm-3">
+                            <p>Від {{model.Need.DateCreated|date:'dd.MM.yyyy'}} по {{model.Need.DateEnd|date:'dd.MM.yyyy'}}</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <p>{{model.Description}}</p>
+                        </div>
+                        <div class="col-sm-2">
+                            <p>{{model.Need.TypeOfNeed.Type}}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row ld-center-top" ng-show="params.inProgress">
+    <div class="loader"></div>
+</div>
+
+
+

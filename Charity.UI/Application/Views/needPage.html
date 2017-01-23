@@ -1,0 +1,127 @@
+﻿<div class="container mainPage">
+        <div class="row">
+            <!--<div class="col-lg-9">-->
+                <div class="needInfo">
+                    <div style="text-align:center">
+                        <h3 style="font-weight: bold">Інформаційна сторінка потреби</h3>
+                    </div tableMargin>
+                   <div class="row table">
+                       <div class="col-lg-6">
+                           <table class="tableInfo" cellpadding="0" cellspacing="0" border="0">
+                               <tr>
+                                   <td>Організація</td>
+                                   <td style="font-weight: bold;">{{need.Organization}}</td>
+                               </tr>
+                               <tr>
+                                   <td>Потреба</td>
+                                   <td style="font-weight: bold">{{need.Name}}</td>
+                               </tr>
+                               <tr>
+                                   <td>Статус</td>
+                                   <td style="font-weight: bold">{{need.Status}}</td>
+                               </tr>
+                               <tr>
+                                   <td>Опис</td>
+                                   <td style="font-weight: bold">{{need.Description}}</td>
+                               </tr>
+                               <tr>
+                                   <td>Дата</td>
+                                   <td style="font-weight: bold">{{need.DateCreated|date:'MM-dd-yyyy'}}</td>
+                               </tr>
+                               <tr ng-if="need.Status=='Виконано'">
+                                   <td>Дата завершення</td>
+                                   <td style="font-weight: bold">{{need.DateEnd|date:'MM-dd-yyyy'}}</td>
+                               </tr>
+                               <tr>
+                                   <td><i class="fa fa-link" aria-hidden="true"></i></td>
+                                   <td style="font-weight: bold">{{need.Organization.WebSite}}</td>
+                               </tr>
+                               <tr ng-if="need.Status=='Виконано'">
+                                   <td>Виконав:</td>
+                                   <td style="font-weight: bold">{{need.User}}</td>
+                               </tr>
+                               <tr ng-if="need.Status=='Виконано'&&need.UserPhoto!==null">
+                                   <td></td>
+                                   <td><img src="{{need.UserPhoto}}" style="width:100px;"></td>
+                               </tr>
+                           </table>
+                       </div>
+                       <div class="col-lg-6">
+                           <div ng-if="need.ImageLink!==null">
+                               <img class="needImage" src="{{need.ImageLink}}" />
+                           </div>
+                       </div>
+                   </div>
+                </div>
+            <!--</div>-->
+            <!--<div class="col-lg-3">
+                <h3 class="state">Статус:   {{need.Status}}</h3>
+            </div>-->
+        </div>
+        <div class="row">
+            <div id="mediaBlock" style="display:none;">
+                <h2>Як це було</h2>
+                <!--<div class="col-lg-9">-->
+                    <div class="media">
+                        <div class="row">
+                            <div class="feedback" ng-if="need.Feedback!==null">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="col-lg-4">
+                                            <h4 style="font-weight: bold; text-align:right">Відгук</h4>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="feedbackblock">
+                                                <div class="feedbacktext">
+                                                    <p>
+                                                        {{need.Feedback}}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4"></div>
+                                </div>
+                            </div>
+                            <div class="images">
+                                <div class="sliderBlock">
+                                    <div id="slider">
+                                        <a href="#" class="control_next">>></a>
+                                        <a href="#" class="control_prev"><<</a>
+                                        <ul >
+                                            <li ng-repeat="photo in need.Photos" ng-class="{active:!$index}">
+                                                <img ng-src="{{photo}}"/>
+                                            </li>
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="videos">
+                                <!--<div class="sliderBlock">
+                                    <div id="slider">
+                                        <a href="#" class="control_next">>></a>
+                                        <a href="#" class="control_prev"><</a>
+                                        <ul>
+                                            <li ng-repeat="video in need.Videos">
+                                                <video controls>
+                                                    <source src="video" />
+                                                </video>
+                                                <iframe width="560" height="315" src="{{video}}" frameborder="0" allowfullscreen></iframe>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+                <!--</div>-->
+                <!--<div class="col-lg-3"></div>-->
+            </div>
+        </div>
+    </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="Application/Styles/NeedPage/needPage.css" rel="stylesheet" />

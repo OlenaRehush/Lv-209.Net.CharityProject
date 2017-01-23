@@ -1,0 +1,62 @@
+﻿body {
+}
+
+.needType{
+    width:20%;
+    margin:10px 0 0 0;
+}
+
+.organization{
+    width:30%;
+    margin:10px 0 0 0;
+}
+
+.typeneeds{
+    margin:15px 15px 15px 15px;
+}
+
+.combobox{
+    margin:5px 5px 5px 5px;
+}
+
+.region{
+     width:30%;
+    margin:10px 0 0 0;
+}
+
+.status{
+    width:20%;
+    margin:10px 0 0 0;
+}
+
+.needsList{
+    margin:30px 0 0 0;
+    /*height:200px;*/
+}
+.container{
+    height:inherit;
+}
+
+.need  {
+    /*margin:30px, 0, 0, 0;*/
+    /*margin:3% 0 0 0;*/
+    margin-top:1%;
+    height:50px;
+    background-color:#e0f2f1;
+    border-radius:6px;
+    border:solid;
+
+    /*display:table;*/
+    /*background-color:#e0f2f1;*/
+    /*border:solid;*/
+}
+
+.component{
+    background-color:#e0f2f1;
+    display:table-cell;
+    vertical-align: middle;
+    padding-left:5px;
+    height: 3em;  /* не в % */
+    line-height: 3em;
+    /*text-align:center;*/
+}
